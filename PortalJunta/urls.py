@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^teste/$', views.main_page, name='homepage'),
     url(r'^logout/$', views.logout_page, name="logout_page"),
     url(r'^register/$', views.register_page, name="register_page"),
+    url(r'^testedb/$', views.show_news),
 ]
