@@ -1,16 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import HttpRequest
-from django.template import loader
-from django.template import Context
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth import logout
-from django.template import RequestContext
-from django.shortcuts import render_to_response
 from myapp.forms import *
-from django.db import models
 from django.contrib.auth.decorators import login_required
-from django.db import connection
+from myapp.models import Noticia
+from django.db import models
+from datetime import datetime
+from django.core.serializers import serialize
 
 import json
 from django.http import JsonResponse
@@ -20,7 +17,9 @@ from django.http import JsonResponse
 
 
 def index(request):
-    return render(request, 'index.html', {'user': request.user})
+    response = show_news(request);
+    print(response)
+    return render(request, 'index.html', {'user': request.user, 'news': response})
 
 
 def login(request):
@@ -49,23 +48,27 @@ def register_page(request):
 
 @login_required
 def show_news(request):
-    cur = connection.cursor()
+    Noticia.objects.filter(titulo='Petr').delete()
+    Noticia.objects.filter(titulo='Benfica ganhou').delete()
+    Noticia.objects.filter(titulo='Jonas o Gato').delete()
+    news = Noticia(titulo='Petr', descricao="porhjshjhjdsa jhsjdh adks k lkjs")
+    news2 = Noticia(titulo='Benfica ganhou', descricao="glorioso slb sakljaklj ksjakld  dsjhsd s")
+    news3 = Noticia(titulo='Jonas o Gato', descricao="o jonas e um gato muito cromo kdsajks asjhjsa jsk sahkj asdjg ajk sa a")
+    news.save()
+    news2.save()
+    news3.save()
 
-    try:
-        cur.execute("""SELECT * from noticia""")
-    except:
-        print
-        "I can't SELECT from noticia"
+    items_list = list(Noticia.objects.all().values().order_by('-id'))
 
-    res = []
-    columns = (
-        'id_conteudo', 'titulo', 'descricao'
-    )
 
-    results = cur.fetchall()
-    for row in results:
-        res.append(dict(zip(columns, row)))
+    json_data = json.dumps(items_list, default=myconverter)
+    return json_data
 
-    response = json.dumps(res, indent=2)
 
-    return render(request, 'index.html', {'user': request.user, 'news': response})
+    #return JsonResponse(json_data, safe=False)
+
+
+def myconverter(o):
+    if isinstance(o, datetime):
+        return o.__str__()
+

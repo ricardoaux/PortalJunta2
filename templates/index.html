@@ -26,8 +26,60 @@
         </head>
         <body>
 
-        <script>
-            var obj = $.parseJSON({{ news }});
+        <script type="text/javascript">
+            var a = '{{ news }}'
+            a = a.replace(/&quot;/ig,'"');
+            var b = JSON.parse(a);
+            var flag = 0;
+
+
+            $( document ).ready(function() {
+                if (b[0] != null) {
+                    document.getElementById("news1").innerHTML = "<h1>" + b[0].titulo + "</h1>" +
+                            "<h2>" + b[0].descricao + "</h2>" +
+                            "<a href='#' class='btn'> Ler Mais </a>";
+                    document.getElementById("news2").innerHTML = "<p>" + b[0].descricao + "</p>";
+                }
+                else {
+                    flag = 1;
+                    document.getElementById("news1").innerHTML = "<h1>" + "Noticias indisponíveis" + "</h1>";
+                }
+
+                if (b[1] != null && flag == 0) {
+                    document.getElementById("news3").innerHTML = "<a class='pull-left' href='#'>" +
+                        "<i class='icon-news icon'></i>" +
+                        "</a>" +
+                        "<div class='media-body'>" +
+                        "<h1 class='media-heading'>" + b[1].titulo + "</h1>" +
+                        "<div class='ruler-bottom'></div>" +
+                        "<p class='spacing-t'>" + b[1].descricao + "</p>" +
+                        "<a href='#' class='btn'>Ler Mais</a>";
+                }
+
+                if (b[2] != null && flag == 0) {
+                    document.getElementById("news4").innerHTML = "<a class='pull-left' href='#'>" +
+                        "<i class='icon-news icon'></i>" +
+                        "</a>" +
+                        "<div class='media-body'>" +
+                        "<h1 class='media-heading'>" + b[2].titulo + "</h1>" +
+                        "<div class='ruler-bottom'></div>" +
+                        "<p class='spacing-t'>" + b[2].descricao + "</p>" +
+                        "<a href='#' class='btn'>Ler Mais</a>";
+                }
+
+
+                if (b[3] != null && flag == 0) {
+                    document.getElementById("news5").innerHTML = "<a class='pull-left' href='#'>" +
+                        "<i class='icon-news icon'></i>" +
+                        "</a>" +
+                        "<div class='media-body'>" +
+                        "<h1 class='media-heading'>" + b[3].titulo + "</h1>" +
+                        "<div class='ruler-bottom'></div>" +
+                        "<p class='spacing-t'>" + b[3].descricao + "</p>" +
+                        "<a href='#' class='btn'>Ler Mais</a>";
+                }
+            });
+
         </script>
 
         <!--[if lt IE 7]>
@@ -108,21 +160,6 @@
                                         <li><a href="#">Contactos</a></li>
                                     </ul>
                             </nav>
-                            <!--
-                            <div class="nav-collapse collapse">
-                                <ul class="nav">
-                                    <li class="active"><a href="#"> Início </a></li>
-                                    <li><a href="#"> A Freguesia </a></li>
-                                    <li><a href="#"> A Junta </a></li>
-                                    <li><a href="#"> Assembleia </a></li>
-                                    <li><a href="#"> Gestão e Orçamento </a></li>
-                                    <li><a href="#"> Notícias </a></li>
-                                    <li><a href="#"> Atividades </a></li>
-                                    <li><a href="#"> Serviços </a></li>
-                                    <li><a href="#"> Anúncios </a></li>
-                                    <li><a href="#"> Contactos </a></li>
-                                </ul>
-                            </div><!--/.nav-collapse -->
                         </div>
 
                     </div>
@@ -170,18 +207,21 @@
                 <div class="featured-content">
                     <div class="row-fluid">
                         <div class="span5 offset1">
-                            <div class="block">
+                            <div class="block" id = "news1">
+                                <!--
                                 <h1>Noticia 1</h1>
-                                <h2>euismod in, pharetra ultriciesCrasconsequat vavimus supsompurkoi varsit</h2>
+                                <h2> blabalkjks jda kakl da </h2>
                                 <a href="#" class="btn"> Ler Mais</a>
+                                -->
                             </div>
                         </div>
                         <div class="span5">
-                            <div class="block-content">
-                                <h3>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus lorem ipsum dolor</h3>
+                            <div class="block-content" id = "news2">
+                                <!--
                                 <p>vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.
                                 </p>
                                 <p class="last">Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Integeralesuada.</p>
+                                -->
                             </div>
                         </div>
                     </div>
@@ -191,48 +231,26 @@
                 <div class="featured-blocks">
                     <div class="row-fluid">
                         <div class="span4">
-                            <div class="media">
-                              <a class="pull-left" href="#">
-                                <i class="icon-news icon"></i>
-                              </a>
-                              <div class="media-body">
-                                <h1 class="media-heading">Noticia</h1>
-                                <div class="ruler-bottom"></div>
-                                <p class="spacing-t">Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, euin vulputate magna eros lipsum</p>
-                                <a href="#" class="btn">Ler Mais</a>
-                              </div>
+                                <div class="media" id = "news3">
+
+                                </div>
+                        </div>
+                        <div class="span4">
+                            <div class="media" id = "news4">
+
                             </div>
                         </div>
                         <div class="span4">
-                            <div class="media">
-                              <a class="pull-left" href="#">
-                                <i class="icon-news icon"></i>
-                              </a>
-                              <div class="media-body">
-                                <h1 class="media-heading">Noticia 2</h1>
-                                <div class="ruler-bottom"></div>
-                                <p class="spacing-t">Craesent dapibus, neque id cursus faucibus, tortor neque egestas augue, euin vulputate magna eros lipsum</p>
-                                <a href="#" class="btn">Ler Mais</a>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="span4">
-                            <div class="media">
-                              <a class="pull-left" href="#">
-                                <i class="icon-news icon"></i>
-                              </a>
-                              <div class="media-body">
-                                <h1 class="media-heading">Noticia 3</h1>
-                                <div class="ruler-bottom"></div>
-                                <p class="spacing-t">Jraesent dapibus, neque id cursus faucibus, tortor neque egestas augue, euin vulputate magna eros lipsum</p>
-                                <a href="#" class="btn">Ler Mais</a>
-                              </div>
+                            <div class="media" id = "news5">
+
                             </div>
                         </div>
                     </div>
+                    <!--
                     <div class="mais">
                         <h1><a href="#" class="btn">Ver Todas as Notícias </a></h1>
                     </div>
+                    -->
                 </div>
             </div>
 
