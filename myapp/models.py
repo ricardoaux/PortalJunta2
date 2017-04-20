@@ -35,3 +35,7 @@ class Noticia(Conteudo_Site):
     imagem = models.BinaryField()
 
 
+class Evento(Conteudo_Site):
+    data_evento = models.DateField()
+    imagem = models.BinaryField()
+

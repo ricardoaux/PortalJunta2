@@ -22,17 +22,23 @@
         <script src="{% static "js/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-
-        </head>
-        <body>
+    </head>
+    <body>
 
         <script type="text/javascript">
-            var a = '{{ news }}'
+            var text = "";
+
+            var a = '{{ news }}';
             a = a.replace(/&quot;/ig,'"');
             var b = JSON.parse(a);
             var flag = 0;
 
 
+            var c = '{{ events }}'
+            c = c.replace(/&quot;/ig,'"');
+            var d = JSON.parse(c);
+
+            // NOTICIAS
             $( document ).ready(function() {
                 if (b[0] != null) {
                     document.getElementById("news1").innerHTML = "<h1>" + b[0].titulo + "</h1>" +
@@ -78,6 +84,80 @@
                         "<p class='spacing-t'>" + b[3].descricao + "</p>" +
                         "<a href='#' class='btn'>Ler Mais</a>";
                 }
+
+                //EVENTOS
+                if (d[0] != null){
+                        text =
+                            "<ul id='myTab' class='nav nav-tabs'>" +
+                                "<li class='active'><a href='#Sedegestasteet' data-toggle='tab'><i class='icon-calendar'></i>"+ d[0].titulo + "</a></li>";
+
+                        if (d[1] != null) {
+                            text +=
+                                "<li class=''><a href='#morbiinterdum' data-toggle='tab'><i class='icon-calendar'></i>"+ d[1].titulo + "</a></li>";
+                        }
+                        else{
+                            text += "</ul>";
+                        }
+
+                        if (d[2] != null) {
+                            text +=
+                                "<li class=''><a href='#interdumMorbi' data-toggle='tab'><i class='icon-calendar'></i>"+ d[2].titulo + "</a></li>" +
+                                "</ul>";
+                        }
+                        else {
+                           text += "</ul>";
+                        }
+
+
+                        text +=
+                            "<div id='myTabContent' class='tab-content'>" +
+                              "<div class='tab-pane fade active in' id='Sedegestasteet'>" +
+                                "<div class='row-fluid'>" +
+                                    "<div class='block'>" +
+                                        "<img src='{% static 'img/img1.png' %}' class='spacing-b' alt=''>" +
+                                        "<p class='last'>" + d[0].descricao + "</p>" +
+                                    "</div>" +
+                                "</div>" +
+                              "</div>";
+
+                        if (d[1] == null){
+                           text += "</div>";
+                        }
+                }
+                else{
+                    text = "<h1>" + "Não há eventos disponíveis" + "</h1>";
+                }
+
+                if (d[1] != null){
+                   text +=
+                    "<div class='tab-pane fade' id='morbiinterdum'>" +
+                        "<div class='row-fluid'>" +
+                            "<div class='block'>" +
+                                "<img src='{% static 'img/img1.png' %}' class='spacing-b' alt=''>" +
+                                "<p class='last'>" + d[1].descricao + "</p>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>";
+
+                    if (d[2] == null){
+                        text += "</div>";
+                    }
+                }
+
+                if (d[2] != null){
+                    text +=
+                        "<div class='tab-pane fade' id='interdumMorbi'>" +
+                            "<div class='row-fluid'>" +
+                                "<div class='block'>" +
+                                    "<img src='{% static 'img/img1.png' %}' class='spacing-b' alt=''>" +
+                                    "<p class='last'>" + d[2].descricao + "</p>" +
+                                "</div>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>";
+                }
+
+                document.getElementById("event1").innerHTML = text;
             });
 
         </script>
@@ -257,12 +337,18 @@
 
             </div>
             <div class="container" id="eventos">
-                <div class="tabs">
+                <div class="tabs" id="event1">
+                    <!--
                     <ul id="myTab" class="nav nav-tabs">
+
                       <li class="active"><a href="#Sedegestasteet" data-toggle="tab"><i class="icon-calendar"></i> Evento 1 </a></li>
                       <li class=""><a href="#morbiinterdum" data-toggle="tab"><i class="icon-calendar"></i> Evento 2 </a></li>
                       <li class=""><a href="#interdumMorbi" data-toggle="tab"><i class="icon-calendar"></i> Evento 3 </a></li>
+
                     </ul>
+                    -->
+
+                    <!--
                     <div id="myTabContent" class="tab-content">
                       <div class="tab-pane fade active in" id="Sedegestasteet">
                         <div class="row-fluid">
@@ -289,9 +375,13 @@
                         </div>
                       </div>
                     </div>
+                    -->
+
+                    <!--
                     <div class="mais">
                         <h1><a href="#" class="btn">Ver Todas as Atividades </a></h1>
                     </div>
+                    -->
                 </div>
             </div>
 

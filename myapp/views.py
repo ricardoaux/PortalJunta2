@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia
+from myapp.models import Noticia, Evento
 from django.db import models
 from datetime import datetime
 from django.core.serializers import serialize
@@ -17,10 +17,12 @@ from django.http import JsonResponse
 
 
 def index(request):
-    response = show_news(request);
-    print(response)
-    return render(request, 'index.html', {'user': request.user, 'news': response})
+    news = show_news(request)
+    events = show_events(request)
+    return render(request, 'index.html', {'user': request.user, 'news': news, 'events': events})
 
+def questionario(request):
+    return render(request, 'questionario.html')
 
 def login(request):
     return render(request, 'registration/login.html')
@@ -46,7 +48,22 @@ def register_page(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-@login_required
+def show_events(request):
+    Evento.objects.all().delete()
+    ev = Evento(titulo='Jogo do Benfica', descricao='Ir ao estádio da luz ver o Benfica', data_evento=datetime.now())
+    ev2 = Evento(titulo='Sport Lisboa', descricao='Ola ola', data_evento=datetime.now())
+    ev3 = Evento(titulo='Gato Jonas', descricao='Fazer asneiras', data_evento=datetime.now())
+    ev.save()
+    ev2.save()
+    ev3.save()
+
+    events_list = list(Evento.objects.all().values())
+    print(events_list)
+
+    json_data = json.dumps(events_list, default=myconverter)
+
+    return json_data
+
 def show_news(request):
     Noticia.objects.filter(titulo='Petr').delete()
     Noticia.objects.filter(titulo='Benfica ganhou').delete()
@@ -60,12 +77,9 @@ def show_news(request):
 
     items_list = list(Noticia.objects.all().values().order_by('-id'))
 
-
     json_data = json.dumps(items_list, default=myconverter)
+
     return json_data
-
-
-    #return JsonResponse(json_data, safe=False)
 
 
 def myconverter(o):
