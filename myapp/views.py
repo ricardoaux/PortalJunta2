@@ -15,14 +15,17 @@ from django.http import JsonResponse
 
 # Create your views here.
 
+# https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
 
 def index(request):
     news = show_news(request)
     events = show_events(request)
     return render(request, 'index.html', {'user': request.user, 'news': news, 'events': events})
 
+
 def questionario(request):
     return render(request, 'questionario.html')
+
 
 def login(request):
     return render(request, 'registration/login.html')
@@ -46,6 +49,10 @@ def register_page(request):
             return HttpResponseRedirect('/')
     form = RegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def show_heraldica(request):
+    return render(request, 'freguesia/heraldica.html',  {'user': request.user})
 
 
 def show_events(request):

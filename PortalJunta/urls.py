@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^logout/$', views.logout_page, name="logout_page"),
     url(r'^register/$', views.register_page, name="register_page"),
     url(r'^quest/$', views.questionario, name="questionario"),
+    url(r'^heraldica/$', views.show_heraldica, name="heraldica"),
 ]
