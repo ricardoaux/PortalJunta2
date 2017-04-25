@@ -55,6 +55,19 @@ def show_heraldica(request):
     return render(request, 'freguesia/heraldica.html',  {'user': request.user})
 
 
+def show_historia(request):
+    return render(request, 'freguesia/historia.html',  {'user': request.user})
+
+
+def show_composicao(request):
+    return render(request, 'orgaos/assembleia_composicao.html',  {'user': request.user})
+
+
+def show_executivo(request):
+    return render(request, 'orgaos/junta_executivo.html',  {'user': request.user})
+
+
+
 def show_events(request):
     Evento.objects.all().delete()
     ev = Evento(titulo='Jogo do Benfica', descricao='Ir ao estádio da luz ver o Benfica', data_evento=datetime.now())

@@ -9,7 +9,7 @@
         {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Heráldica</title>
+        <title>História</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -31,7 +31,7 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         <script>
-             $.get('{% static "text/heraldica" %}',function(data){
+             $.get('{% static "text/historia" %}',function(data){
                 $('#text').html(data);
             });
         </script>
@@ -46,8 +46,8 @@
                                 <a href="/register/" class="btnreg">register</a>
                                 <a href="/login/" class="btnin">login</a>
                             {% endif %}
-                            <!-- <a data-toggle="modal" data-target="#login-modal"> <img src="{% static "img/Signin.png" %}" alt="" class="bw"> </a> -->
-                            <h1> Heráldica </h1>
+
+                            <h1> História </h1>
                         </div>
                     <div class="menu">
                             <nav class="navbar navbar-default" role="navigation">
@@ -55,10 +55,10 @@
                                     <ul class="nav navbar-nav">
                                         <li><a href="/">Home</a></li>
                                         <li class="dropdown">
-                                          <a href="" class="dropdown-toggle" data-toggle="dropdown"> Freguesia <span class="caret"></span></a>
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Freguesia <span class="caret"></span></a>
                                           <ul class="dropdown-menu" role="menu">
-                                              <li><a href="#">Heráldica</a></li>
-                                              <li><a href="/historia">História</a></li>
+                                              <li><a href="/heraldica">Heráldica</a></li>
+                                              <li><a href="#">História</a></li>
                                               <li><a href="#">Património</a></li>
                                               <li><a href="#">Mapa</a></li>
                                               <li><a href="#">Instituições</a></li>
@@ -115,13 +115,7 @@
 
                 <div class="container">
                     <div class="featured-content">
-                        <img src="{% static "img/brasao.jpg" %}" alt="" class="heraldica">
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="tabs">
-                        <p id="text"></p>
+                        <p id="text" class="textclass"></p>
                     </div>
                 </div>
 

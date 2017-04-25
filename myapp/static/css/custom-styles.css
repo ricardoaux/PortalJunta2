@@ -236,9 +236,10 @@ left: auto;
     .featured-content .block h2{color: #9d9d9d; font-size: 24px; line-height: 30px;font-family: 'source_sans_prolight'; padding-bottom: 25px;}
     .featured-content .block-content h3{color: #716a72; font-family: 'source_sans_proregular'; font-size: 19px; line-height: 24px; text-decoration: underline; padding-bottom: 22px;}
 
+    .featured-content .heraldica{display: block; margin: 0 auto;}
 	
 	.tabs{background: #fafafa; padding: 40px 30px;}
-  .tabs .ruler-bottom{border-bottom: none;}
+    .tabs .ruler-bottom{border-bottom: none;}
     .tabs ul{border-bottom: none; margin: 0;}
     .tabs ul li{  background: #f2f2f2; border-radius: 3px 3px 0 0; margin-right: 8px; }
     .tabs ul li:hover{background: #f2f2f2;}
@@ -253,6 +254,8 @@ left: auto;
     .tabs .tab-content .block .no-spacing{padding-left: 0;}
     .tabs .nav-tabs a [class^="fw-icon-"]{display: inline-block; font-size: 15px; color: #716a72; margin-right: 5px;}
 
+    .textclass { padding: 20px 0; padding-left: 25px; padding-right: 40px;}
+
     .tabs .mais {padding-top:25px; padding-right: 25px; text-align: right; padding-bottom: 30px;}
 
     .tabs .mais .btn{color: #fff; padding: 15px 35px 15px 35px; border-radius: 5px; background: #333333; text-transform: uppercase; border:none; text-shadow: none; font-family: 'source_sans_problack';
@@ -262,6 +265,16 @@ left: auto;
     .tabs h1 {color: #c85b5f; font-size: 30px; letter-spacing: 1px; line-height:30px; font-family: 'source_sans_problack'; text-transform: uppercase; text-align: center}
 
     .featuredtwo {background: #202020;}
+
+    .green {
+        background-color: #d6f8de;
+    }
+    .yellow {
+        background-color: #fef9e7
+    }
+    .grey {
+        background-color: #fafafa
+    }
 /* ==========================================================================
     Sidebar styles stars here
    ========================================================================== */
@@ -319,6 +332,20 @@ left: auto;
 }
  
 .bw:hover {
+  -webkit-filter: grayscale(70%);
+}
+
+.bw2 {
+    width: 90px;
+    height: 90px;
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.bw2:hover {
   -webkit-filter: grayscale(70%);
 }
 

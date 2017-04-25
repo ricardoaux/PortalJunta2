@@ -30,4 +30,7 @@ urlpatterns = [
     url(r'^register/$', views.register_page, name="register_page"),
     url(r'^quest/$', views.questionario, name="questionario"),
     url(r'^heraldica/$', views.show_heraldica, name="heraldica"),
+    url(r'^historia/$', views.show_historia, name="historia"),
+    url(r'^assembleia/composicao$', views.show_composicao, name="composicao"),
+    url(r'^junta/executivo$', views.show_executivo, name="executivo"),
 ]

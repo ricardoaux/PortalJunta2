@@ -9,7 +9,7 @@
         {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Heráldica</title>
+        <title> Junta - Executivo </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -31,8 +31,37 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         <script>
-             $.get('{% static "text/heraldica" %}',function(data){
-                $('#text').html(data);
+            var image = new Image();
+
+            function imgError(image) {
+                image.src = "{% static "" %}"+"img/executivo_junta/noimage.jpg";
+                return true;
+            }
+
+
+            var txt_html = "<table class='table'>";
+             $.get('{% static "text/executivo_junta" %}',function(data){
+                 var tmp = [];
+                 var index;
+                 var substring = "Presidente";
+                 var substring2 = "Vogal";
+                 var substring3 = "Secretári";
+                 var substring4 = "Tesoureir";
+                 var patherror = "{% static "" %}"+"img/executivo_junta/noimage.jpg";
+                 var array = data.split('\n');
+                 for (index = 0; index < array.length; ++index) {
+                     if (array[index] != "") {
+                         tmp[index] = array[index].split(" # ");
+                         var path2 = "img/executivo_junta/" + tmp[index][1];
+                         image.src = "{% static "" %}"+path2;
+                         console.log(image.src);
+                         txt_html += "<tr> <th> <h1>" + tmp[index][2] + "</h1> </th> <th> <h2>" + tmp[index][0] + "</h2> </th>" + "<th> <h2>" + "<img src=" + image.src + " onError = imgError(this) class='bw2'>"+ "</h2> </th> </tr>"
+                             + "<tr class='noBorder'> <td colspan='3'> <p>" + tmp[index][3] + " </p></td></tr>";
+                     }
+                 }
+
+                 txt_html += "</table>";
+                 $('#text').html(txt_html);
             });
         </script>
 
@@ -46,8 +75,8 @@
                                 <a href="/register/" class="btnreg">register</a>
                                 <a href="/login/" class="btnin">login</a>
                             {% endif %}
-                            <!-- <a data-toggle="modal" data-target="#login-modal"> <img src="{% static "img/Signin.png" %}" alt="" class="bw"> </a> -->
-                            <h1> Heráldica </h1>
+
+                            <h1> Junta >> Executivo </h1>
                         </div>
                     <div class="menu">
                             <nav class="navbar navbar-default" role="navigation">
@@ -55,10 +84,10 @@
                                     <ul class="nav navbar-nav">
                                         <li><a href="/">Home</a></li>
                                         <li class="dropdown">
-                                          <a href="" class="dropdown-toggle" data-toggle="dropdown"> Freguesia <span class="caret"></span></a>
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Freguesia <span class="caret"></span></a>
                                           <ul class="dropdown-menu" role="menu">
-                                              <li><a href="#">Heráldica</a></li>
-                                              <li><a href="/historia">História</a></li>
+                                              <li><a href="/heraldica">Heráldica</a></li>
+                                              <li><a href="#">História</a></li>
                                               <li><a href="#">Património</a></li>
                                               <li><a href="#">Mapa</a></li>
                                               <li><a href="#">Instituições</a></li>
@@ -73,7 +102,7 @@
                                             <li><a href="#">Executivo</a></li>
                                               <hr><li><h2> Assembleia </h2></li>
                                             <li><a href="#">Competências</a></li>
-                                            <li><a href="#">Composição</a></li>
+                                            <li><a href="">Composição</a></li>
                                           </ul>
                                         </li>
                                         <li><a href="#noticias">Noticias</a></li>
@@ -115,13 +144,7 @@
 
                 <div class="container">
                     <div class="featured-content">
-                        <img src="{% static "img/brasao.jpg" %}" alt="" class="heraldica">
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="tabs">
-                        <p id="text"></p>
+                        <p id="text" class="textclass"></p>
                     </div>
                 </div>
 
