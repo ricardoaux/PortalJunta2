@@ -32,7 +32,13 @@
         <![endif]-->
         <script>
              $.get('{% static "text/historia" %}',function(data){
-                $('#text').html(data);
+                 var txt_html = ""
+                 var array = data.split('\n');
+                 for (index = 0; index < array.length; ++index) {
+                     txt_html += "<p class='txt'>" + array[index] + " </p>";
+                 }
+
+                $('#text').html(txt_html);
             });
         </script>
 

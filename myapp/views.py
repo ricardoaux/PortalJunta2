@@ -23,6 +23,10 @@ def index(request):
     return render(request, 'index.html', {'user': request.user, 'news': news, 'events': events})
 
 
+def admin(request):
+    return render(request, 'admin/admin.html')
+
+
 def questionario(request):
     return render(request, 'questionario.html')
 
@@ -67,6 +71,20 @@ def show_executivo(request):
     return render(request, 'orgaos/junta_executivo.html',  {'user': request.user})
 
 
+def show_jcompetencias(request):
+    return render(request, 'orgaos/junta_competencias.html',  {'user': request.user})
+
+
+def show_acompetencias(request):
+    return render(request, 'orgaos/assembleia_competencias.html',  {'user': request.user})
+
+
+def noticias(request):
+    news = show_news(request);
+    return render(request, 'conteudos/noticias.html', {'user': request.user, 'news': news})
+
+
+#functions
 
 def show_events(request):
     Evento.objects.all().delete()

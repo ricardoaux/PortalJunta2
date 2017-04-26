@@ -275,6 +275,8 @@ left: auto;
     .grey {
         background-color: #fafafa
     }
+
+    .txt {padding-bottom: 3px; text-align: justify;}
 /* ==========================================================================
     Sidebar styles stars here
    ========================================================================== */

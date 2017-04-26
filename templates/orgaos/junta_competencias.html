@@ -9,7 +9,7 @@
         {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title> Assembleia - Composição </title>
+        <title> Junta - Competências </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -31,31 +31,14 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         <script>
-            var txt_html = "<table class='table'>";
-             $.get('{% static "text/executivo_assembleia" %}',function(data){
-                 var tmp = [];
-                 var index;
-                 var substring = "Presidente";
-                 var substring2 = "Vogal";
-                 var substring3 = "Secretári";
+             $.get('{% static "text/junta_competencias" %}',function(data){
+                 var txt_html = ""
                  var array = data.split('\n');
                  for (index = 0; index < array.length; ++index) {
-                     if (array[index] != "") {
-                         tmp[index] = array[index].split(" # ");
-                         if (tmp[index][0].indexOf(substring) !== -1)
-                             txt_html += "<tr class='green'> <th> <h1>" + tmp[index][0] + "</h1> </th>" + "<th> <h2>" + tmp[index][1] + "</h2> </th> </tr>" ;
-                         else if (tmp[index][0].indexOf(substring2) !== -1)
-                             txt_html += "<tr class='grey'A> <th> <h1>" + tmp[index][0] + "</h1> </th>" + "<th> <h2>" + tmp[index][1] + "</h2> </th> </tr>" ;
-                         else if (tmp[index][0].indexOf(substring3) !== -1)
-                             txt_html += "<tr class='yellow'> <th> <h1>" + tmp[index][0] + "</h1> </th>" + "<th> <h2>" + tmp[index][1] + "</h2> </th> </tr>" ;
-                         else
-                             txt_html += "<tr> <th> <h1>" + tmp[index][0] + "</h1> </th>" + "<th> <h2>" + tmp[index][1] + "</h2> </th> </tr>" ;
-                         //console.log(tmp[index][0] + " " + tmp[index][1]);
-                     }
+                     txt_html += "<p class='txt'>" + array[index] + " </p>";
                  }
 
-                 txt_html += "</table>";
-                 $('#text').html(txt_html);
+                $('#text').html(txt_html);
             });
         </script>
 
@@ -70,7 +53,7 @@
                                 <a href="/login/" class="btnin">login</a>
                             {% endif %}
 
-                            <h1> Composição da Assembleia de Freguesia </h1>
+                            <h1> Competências da Junta de Freguesia </h1>
                         </div>
                     <div class="menu">
                             <nav class="navbar navbar-default" role="navigation">
@@ -96,7 +79,7 @@
                                             <li><a href="#">Executivo</a></li>
                                               <hr><li><h2> Assembleia </h2></li>
                                             <li><a href="#">Competências</a></li>
-                                            <li><a href="">Composição</a></li>
+                                            <li><a href="#">Composição</a></li>
                                           </ul>
                                         </li>
                                         <li><a href="#noticias">Noticias</a></li>
