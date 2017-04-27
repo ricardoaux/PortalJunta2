@@ -18,7 +18,7 @@ from django.http import JsonResponse
 # https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
 
 def index(request):
-    news = show_news(request)
+    news = show_news(request, 0)
     events = show_events(request)
     return render(request, 'index.html', {'user': request.user, 'news': news, 'events': events})
 
@@ -79,8 +79,12 @@ def show_acompetencias(request):
     return render(request, 'orgaos/assembleia_competencias.html',  {'user': request.user})
 
 
-def noticias(request):
-    news = show_news(request);
+def show_contactos(request):
+    return render(request, 'outros/contactos.html',  {'user': request.user})
+
+
+def noticias(request, num=0):
+    news = show_news(request, num);
     return render(request, 'conteudos/noticias.html', {'user': request.user, 'news': news})
 
 
@@ -102,19 +106,24 @@ def show_events(request):
 
     return json_data
 
-def show_news(request):
-    Noticia.objects.filter(titulo='Petr').delete()
-    Noticia.objects.filter(titulo='Benfica ganhou').delete()
-    Noticia.objects.filter(titulo='Jonas o Gato').delete()
-    news = Noticia(titulo='Petr', descricao="porhjshjhjdsa jhsjdh adks k lkjs")
-    news2 = Noticia(titulo='Benfica ganhou', descricao="glorioso slb sakljaklj ksjakld  dsjhsd s")
-    news3 = Noticia(titulo='Jonas o Gato', descricao="o jonas e um gato muito cromo kdsajks asjhjsa jsk sahkj asdjg ajk sa a")
-    news.save()
-    news2.save()
-    news3.save()
 
-    items_list = list(Noticia.objects.all().values().order_by('-id'))
+def show_news(request, num=''):
 
+    #Noticia.objects.filter(titulo='Petr').delete()
+    #Noticia.objects.filter(titulo='Benfica ganhou').delete()
+    #Noticia.objects.filter(titulo='Jonas o Gato').delete()
+    #news = Noticia(titulo='Petr', descricao="porhjshjhjdsa jhsjdh adks k lkjs")
+    #news2 = Noticia(titulo='Benfica ganhou', descricao="glorioso slb sakljaklj ksjakld  dsjhsd s")
+    #news3 = Noticia(titulo='Jonas o Gato', descricao="o jonas e um gato muito cromo kdsajks asjhjsa jsk sahkj asdjg ajk sa a")
+    #news.save()
+    #news2.save()
+    #news3.save()
+    if num == 0:
+        items_list = list(Noticia.objects.all().values().order_by('-id'))
+    else:
+        items_list = list(Noticia.objects.filter(id=num).values())
+
+    print(items_list)
     json_data = json.dumps(items_list, default=myconverter)
 
     return json_data

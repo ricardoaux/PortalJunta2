@@ -9,7 +9,7 @@
         {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title> Notícias </title>
+        <title>Contactos</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -30,55 +30,44 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-            <script type="text/javascript">
+        <script>
 
-
-                function imgError(image) {
-                    image.src = "{% static "" %}"+"img/executivo_junta/noimage.jpg";
-                    return true;
+            $.get('{% static "text/contactos" %}',function(data){
+                var txt_html = "<nav class='navbar navbar-default' role='navigation'>";
+                txt_html += "<ul class='nav navbar-nav'>";
+                var tmp;
+                var index;
+                var array = data.split('\n');
+                for (index = 0; index < array.length; ++index) {
+                    if (array[index] != "") {
+                        tmp = array[index].substr(0, array[index].indexOf(' #'));;
+                        txt_html += "<li><a href='#" + tmp + "'" + ">" + tmp + "</a></li>";
+                    }
                 }
+                txt_html += "</ul></nav>";
 
-                $( document ).ready(function() {
-                    var image = new Image();
-
-                    var noti = {{ news|safe }};
-                    var noti2 = JSON.parse(JSON.stringify(noti));
-
-                    var txt_html = "<table class='table'>";
-
-                    var index;
-                    var tmp;
-
-                    for (index = 0; index < noti2.length; index++){
-                        tmp = noti2[index];
+                 $('#menu2').html(txt_html);
+             });
 
 
-                        if (tmp.imagem != null) {
-                            image.src = tmp.imagem;
-                        }
-                        else {
-                            imgError(image);
-                        }
+            var txt_html = "<table class='table'>";
+             $.get('{% static "text/contactos" %}',function(data){
+                 var tmp = [];
+                 var index;
+                 var array = data.split('\n');
+                 for (index = 0; index < array.length; ++index) {
+                     if (array[index] != "") {
+                         tmp[index] = array[index].split(" # ");
+                         txt_html += "<tr id='" + tmp[index][0] + "'" + "> <th> <h1>" + tmp[index][0] + "</h1> </th> <th> <p>" + tmp[index][1] + "<br>" + tmp[index][2] + "</p> </th>" + "<th> <p>" + tmp[index][3] + "<br>" + tmp[index][4] + "</p> </th> </tr>"
+                             + "<tr class='noBorder'> <td colspan='3'> <p>" + tmp[index][5] + " </p></td></tr>";
+                     }
+                 }
 
+                 txt_html += "</table>";
+                 $('#text').html(txt_html);
+             });
 
-                        txt_html += "<tr> <th> <h1>" + noti2[index].titulo + "</h1> </th> <th> <h2>" + noti2[index].data_insercao + "</h2> </th>" + "<th> <h2>" + "<img src=" + image.src +  " class='bw2'>" + "</h2> </th> </tr>"
-                            + "<tr class='noBorder'> <td colspan='3'> <p>" + noti2[index].descricao + " </p></td></tr>";
-                    }
-
-/*
-                    for (index = 0; index < noti2.length; index++) {
-                        image.src = noti2[index].imagem;
-                        txt_html += "<tr> <th> <h1>" + noti2[index].titulo + "</h1> </th> <th> <h2>" + noti2[index].data_insercao + "</h2> </th>" + "<th> <h2>" + "<img src=" + image.src + " onError = imgError(this) class='bw2'>" + "</h2> </th> </tr>"
-                            + "<tr class='noBorder'> <td colspan='3'> <p>" + noti2[index].descricao + " </p></td></tr>";
-                    }
-                    */
-
-                    txt_html += "</table>";
-                    $('#text').html(txt_html);
-                });
-
-
-            </script>
+        </script>
 
             <div class="container">
                 <div class="site-header">
@@ -91,7 +80,7 @@
                                 <a href="/login/" class="btnin">login</a>
                             {% endif %}
 
-                            <h1> Notícias </h1>
+                            <h1> Contactos </h1>
                         </div>
                     <div class="menu">
                             <nav class="navbar navbar-default" role="navigation">
@@ -158,8 +147,14 @@
                 </div>
 
                 <div class="container">
+                    <div class="featuredthree">
+                        <p id="menu2" class="menuthree"></p>
+                    </div>
+                </div>
+
+                <div class="container">
                     <div class="featured-content">
-                        <p id="text" class="textclass"> </p>
+                        <p id="text" class="textclass"></p>
                     </div>
                 </div>
 

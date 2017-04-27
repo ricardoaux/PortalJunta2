@@ -115,11 +115,11 @@ margin-bottom: 7px;
     .loginbtn .btnreg:hover{background: #716a72; color: #fff; text-decoration: none;}
 
 
-	.logo{display: inline-block;}
+	.logo {display: inline-block;}
 	.logo h1{font-size: 50px; line-height: 52px; color: #716a72; text-transform: uppercase; border-bottom: 1px solid #eaeaea;
 			 padding-bottom: 30px;  font-family: 'source_sans_problack'; letter-spacing: 7px;}
 
-	.menu{padding-top: 30px; padding-bottom: 25px; text-align: center;}
+	.menu{padding-top: 30px; padding-bottom: 25px;}
 	.menu .navbar{display: inline-block;  font-family: 'source_sans_prolight'; margin-bottom: 0;}
     .menu .navbar .nav > .active > a {color: #c85b5f; background: none; background-image: none;}
     .menu .navbar .nav > .active > a:hover{background: none; background-image: none; box-shadow: none;}
@@ -134,6 +134,16 @@ margin-bottom: 7px;
     .menutwo .navbar .nav > li > a {color: #fff; font-size: 18px; text-transform: uppercase; padding-right: 30px;
                                 text-shadow: none; box-shadow: none; letter-spacing: 3px; font-weight: bold;}
     .menutwo .navbar .nav > li > a:hover{color: #c85b5f;}
+
+
+    .menuthree {text-align: center; padding: 0 0 0 0;}
+	.menuthree .navbar{display: inline-block;  font-family: 'source_sans_prolight'; margin-bottom: 0;}
+    .menuthree .navbar .nav > .active > a {color: #c85b5f; background: none; background-image: none;}
+    .menuthree .navbar .nav > .active > a:hover{background: none; background-image: none; box-shadow: none;}
+    .menuthree .navbar .nav > li > a {color: #fff; font-size: 18px; text-transform: uppercase; padding-right: 10px;
+                                text-shadow: none; box-shadow: none; letter-spacing: 3px; font-weight: bold;}
+    .menutwo .navbar .nav > li > a:hover{color: #c85b5f;}
+
 
   .mini-menu{display: none;margin: 0 10px;}
     .mini-menu .selectnav{ display: none; width: 100%;background: #716a72;font-weight: 600;padding: 10px;height: 42px; color: #fff; border-radius: 5px; cursor: pointer; outline: 0; border:none !important;}
@@ -255,6 +265,7 @@ left: auto;
     .tabs .nav-tabs a [class^="fw-icon-"]{display: inline-block; font-size: 15px; color: #716a72; margin-right: 5px;}
 
     .textclass { padding: 20px 0; padding-left: 25px; padding-right: 40px;}
+    .textclass p{font-size: 18px; text-align: justify;}
 
     .tabs .mais {padding-top:25px; padding-right: 25px; text-align: right; padding-bottom: 30px;}
 
@@ -265,6 +276,8 @@ left: auto;
     .tabs h1 {color: #c85b5f; font-size: 30px; letter-spacing: 1px; line-height:30px; font-family: 'source_sans_problack'; text-transform: uppercase; text-align: center}
 
     .featuredtwo {background: #202020;}
+
+    .featuredthree {background: #716a72;}
 
     .green {
         background-color: #d6f8de;

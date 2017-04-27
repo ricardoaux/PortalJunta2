@@ -2033,6 +2033,12 @@ table {
   border: 0;
 }
 
+.table tr.noBorder2 td iframe {
+  border: 0;
+  width: 350px;
+  height: 350px;
+}
+
 .table tr td{
   padding-top: 10px;
   padding-bottom: 10px;

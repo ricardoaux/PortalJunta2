@@ -43,11 +43,6 @@
              $.get('{% static "text/executivo_junta" %}',function(data){
                  var tmp = [];
                  var index;
-                 var substring = "Presidente";
-                 var substring2 = "Vogal";
-                 var substring3 = "Secretári";
-                 var substring4 = "Tesoureir";
-                 var patherror = "{% static "" %}"+"img/executivo_junta/noimage.jpg";
                  var array = data.split('\n');
                  for (index = 0; index < array.length; ++index) {
                      if (array[index] != "") {
