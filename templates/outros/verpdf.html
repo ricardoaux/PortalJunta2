@@ -112,18 +112,26 @@
                 <div class="container">
                     <div class="featured-content">
                         <table class="table">
-                            <tr>
-                                <th>Titulo</th>
-                                <th>Descricao</th>
-                                <th> Ficheiro </th>
-                            </tr>
                             {% for b in obj %}
-                            <tr>
-                                <td>{{ b.titulo }}</td>
-                                <td>{{ b.descricao }}</td>
-                                <td>{{ b.ficheiro }}</td>
-                            </tr>
+                                <tr>
+                                    <th class="metade"> Titulo </th>
+                                    <th> Data Inserção </th>
+                                    <th> Ficheiro </th>
+                                </tr>
+                                <tr>
+                                    <td>{{ b.titulo }}</td>
+                                    <td>{{ b.data_insercao }}</td>
+                                    <td><a href='{{ MEDIA_URL }}{{ b.ficheiro }}'> Download </a></td>
+                                </tr>
+                                <tr>
+                                    <th> Descricao </th>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="margem"> {{ b.descricao }}</td>
+                                </tr>
+
                             {% endfor %}
+
                         </table>
                     </div>
                 </div>

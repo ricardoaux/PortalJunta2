@@ -2033,6 +2033,14 @@ table {
   border: 0;
 }
 
+.table .metade {
+  width: 50%;
+}
+
+.table .margem{
+  padding-bottom: 40px;
+}
+
 .table tr.noBorder2 td iframe {
   border: 0;
   width: 350px;

@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from myapp.forms import LoginForm
 from myapp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -41,4 +43,4 @@ urlpatterns = [
     url(r'^noticias/$', views.noticias),
     url(r'^noticias/(?P<num>[0-9].*)/$', views.noticias),
     url(r'^verpdf/$', views.display, name="ver"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

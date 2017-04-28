@@ -41,7 +41,6 @@ class Evento(Conteudo_Site):
 
 
 class Ficheiro(Conteudo_Site):
-
     OPCOES = (
         ("ACAO", "Plano de Acao"),
         ("CONTAS", "Relatorio de Contas"),
@@ -51,6 +50,6 @@ class Ficheiro(Conteudo_Site):
 
     tipo = models.CharField(max_length=20, choices=OPCOES,
                   default="OUTRO")
-    ficheiro = models.FileField(upload_to='myapp/static/documents/')
+    ficheiro = models.FileField(upload_to='documents/')
 
 
