@@ -39,3 +39,18 @@ class Evento(Conteudo_Site):
     data_evento = models.DateField()
     imagem = models.BinaryField()
 
+
+class Ficheiro(Conteudo_Site):
+
+    OPCOES = (
+        ("ACAO", "Plano de Acao"),
+        ("CONTAS", "Relatorio de Contas"),
+        ("ACTAS", "Actas de Reuniao"),
+        ("OUTRO", "Outros"),
+    )
+
+    tipo = models.CharField(max_length=20, choices=OPCOES,
+                  default="OUTRO")
+    ficheiro = models.FileField(upload_to='myapp/static/documents/')
+
+

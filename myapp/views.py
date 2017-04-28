@@ -4,10 +4,12 @@ from django.http import HttpResponse
 from django.contrib.auth import logout
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento
+from myapp.models import Noticia, Evento, Ficheiro
 from django.db import models
 from datetime import datetime
 from django.core.serializers import serialize
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import redirect
 
 import json
 from django.http import JsonResponse
@@ -53,6 +55,23 @@ def register_page(request):
             return HttpResponseRedirect('/')
     form = RegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def simple_upload(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('admin')
+    else:
+        form = DocumentForm()
+    return render(request, 'admin/upload_file.html', {
+        'form': form
+    })
+
+
+def display(request):
+  return render(request, 'outros/verpdf.html', {'obj': Ficheiro.objects.all()})
 
 
 def show_heraldica(request):

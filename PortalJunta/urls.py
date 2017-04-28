@@ -22,7 +22,8 @@ from myapp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^admin2/', views.admin, name="admin"),
+    url(r'^admin2/$', views.admin, name="admin"),
+    url(r'^admin2/upload/$', views.simple_upload, name="upload_file"),
     url(r'^$', views.index, name='index'),
     url(r'^login/$', auth_views.login, {'authentication_form': LoginForm},
         name='login'),
@@ -39,4 +40,5 @@ urlpatterns = [
     url(r'^contactos/$', views.show_contactos, name="contactos"),
     url(r'^noticias/$', views.noticias),
     url(r'^noticias/(?P<num>[0-9].*)/$', views.noticias),
+    url(r'^verpdf/$', views.display, name="ver"),
 ]
