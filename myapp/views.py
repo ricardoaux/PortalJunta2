@@ -70,8 +70,20 @@ def simple_upload(request):
     })
 
 
-def display(request):
-  return render(request, 'outros/verpdf.html', {'obj': Ficheiro.objects.all()})
+def show_acao(request):
+  return render(request, 'outros/verpdf.html', {'user': request.user, 'titulo': "Planos de Ação", 'obj': Ficheiro.objects.filter(tipo="ACAO")})
+
+
+def show_atas(request):
+  return render(request, 'outros/verpdf.html', {'user': request.user, 'titulo': "Actas de Reuniões", 'obj': Ficheiro.objects.filter(tipo="ACTAS")})
+
+
+def show_contas(request):
+  return render(request, 'outros/verpdf.html', {'user': request.user, 'titulo': "Relatórios de Contas", 'obj': Ficheiro.objects.filter(tipo="CONTAS")})
+
+
+def show_outros(request):
+  return render(request, 'outros/verpdf.html', {'user': request.user, 'titulo': "Outros Documentos", 'obj': Ficheiro.objects.filter(tipo="OUTROS")})
 
 
 def show_heraldica(request):

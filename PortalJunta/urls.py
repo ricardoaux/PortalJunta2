@@ -42,5 +42,8 @@ urlpatterns = [
     url(r'^contactos/$', views.show_contactos, name="contactos"),
     url(r'^noticias/$', views.noticias),
     url(r'^noticias/(?P<num>[0-9].*)/$', views.noticias),
-    url(r'^verpdf/$', views.display, name="ver"),
+    url(r'^planosdeacao/$', views.show_acao, name="acao"),
+    url(r'^contas/$', views.show_contas, name="contas"),
+    url(r'^actas/$', views.show_atas, name="actas"),
+    url(r'^outros/$', views.show_outros, name="outros"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
