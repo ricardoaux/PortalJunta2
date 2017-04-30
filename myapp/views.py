@@ -4,12 +4,13 @@ from django.http import HttpResponse
 from django.contrib.auth import logout
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento, Ficheiro
+from myapp.models import Noticia, Evento, Ficheiro, Cidadao
 from django.db import models
 from datetime import datetime
 from django.core.serializers import serialize
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import redirect
+from django.db import transaction
 
 import json
 from django.http import JsonResponse
@@ -45,13 +46,17 @@ def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-
+@transaction.atomic
 def register_page(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(username=form.cleaned_data['username'],
-                                            password=form.cleaned_data['password1'], email=form.cleaned_data['email'])
+            user = User(username=form.cleaned_data['username'],
+                                            password=form.cleaned_data['password1'], email=form.cleaned_data['email'],
+                                            first_name="", last_name="")
+            user.save()
+            cidadao = Cidadao(user=user, num_bi='111999333')
+            cidadao.save()
             return HttpResponseRedirect('/')
     form = RegistrationForm()
     return render(request, 'registration/register.html', {'form': form})

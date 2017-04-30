@@ -8,19 +8,32 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
+
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom-styles.css" %}">
+    <link rel="stylesheet" href="{% static "css/font-awesome.css" %}">
+    <link rel="stylesheet" href="{% static "css/component.css" %}">
+    <link rel="stylesheet" href="{% static "css/font-awesome-ie7.css" %}">
     <link rel="stylesheet" href="{% static "css/login.css" %}">
+
+    <script src="{% static "js/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </head>
 
 <body>
+
+
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h1>Login to Your Account</h1><br>
 				  <form>
-					<input type="text" name="user" placeholder="Username">
-					<input type="password" name="pass" placeholder="Password">
-					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                      <input type="text" name="user" placeholder="Username">
+                      <input type="password" name="pass" placeholder="Password">
+                      <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                      {% csrf_token %}
 				  </form>
 
 				  <div class="login-help">
@@ -29,5 +42,6 @@
 				</div>
           </div>
         </div>
+
 </body>
 </html>

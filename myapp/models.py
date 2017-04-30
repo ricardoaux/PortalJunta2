@@ -1,25 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
 
-class Pessoa(models.Model):
-    permissao = models.CharField(max_length=1)
-    username = models.CharField(max_length=20)
-
-    class Meta:
-        abstract = True
-
-
-class Cidadao(Pessoa):
-    nome = models.CharField(max_length=20)
-    apelido = models.CharField(max_length=20)
-    num_bi = models.PositiveIntegerField()
-    morada = models.CharField(max_length=100)
-    codigo_postal = models.CharField(max_length=8)
-    email = models.EmailField()
-    telefone = models.PositiveIntegerField()
-    nro_eleitor = models.PositiveIntegerField()
+class Cidadao(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    num_bi = models.PositiveIntegerField(null=True, blank=True)
+    morada = models.CharField(max_length=100, null=True, blank=True)
+    codigo_postal = models.CharField(max_length=8, null=True, blank=True)
+    telefone = models.PositiveIntegerField(null=True, blank=True)
+    nro_eleitor = models.PositiveIntegerField(null=True, blank=True)
 
 
 class Conteudo_Site(models.Model):
@@ -33,6 +26,7 @@ class Conteudo_Site(models.Model):
 
 class Noticia(Conteudo_Site):
     imagem = models.BinaryField()
+
 
 
 class Evento(Conteudo_Site):
