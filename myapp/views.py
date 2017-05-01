@@ -49,11 +49,12 @@ def logout_page(request):
 @transaction.atomic
 def register_page(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = User(username=form.cleaned_data['username'],
                                         password=form.cleaned_data['password1'], email=form.cleaned_data['email'],
                                         first_name=form.cleaned_data['nome'], last_name=form.cleaned_data['apelido'])
+            user.set_password(user.password)
             user.save()
             cidadao = Cidadao(user=user, num_bi=form.cleaned_data['num_bi'], morada=form.cleaned_data['morada'],
                                 codigo_postal = form.cleaned_data['codigopostal'], localidade=form.cleaned_data['localidade'],
@@ -65,7 +66,7 @@ def register_page(request):
             #form = RegistrationForm()
             return render(request, 'registration/register.html', {'form': form})
     else:
-        form = RegistrationForm()
+        form = UserCreationForm()
         return render(request, 'registration/register.html', {'form': form})
 
 
