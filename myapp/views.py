@@ -52,14 +52,21 @@ def register_page(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = User(username=form.cleaned_data['username'],
-                                            password=form.cleaned_data['password1'], email=form.cleaned_data['email'],
-                                            first_name="", last_name="")
+                                        password=form.cleaned_data['password1'], email=form.cleaned_data['email'],
+                                        first_name=form.cleaned_data['nome'], last_name=form.cleaned_data['apelido'])
             user.save()
-            cidadao = Cidadao(user=user, num_bi='111999333')
+            cidadao = Cidadao(user=user, num_bi=form.cleaned_data['num_bi'], morada=form.cleaned_data['morada'],
+                                codigo_postal = form.cleaned_data['codigopostal'], localidade=form.cleaned_data['localidade'],
+                                telefone = form.cleaned_data['telefone'], nro_eleitor = form.cleaned_data['nro_eleitor'])
             cidadao.save()
-            return HttpResponseRedirect('/')
-    form = RegistrationForm()
-    return render(request, 'registration/register.html', {'form': form})
+            return render(request, 'registration/register.html', {'registered': True})
+        else:
+            print(form.errors)
+            #form = RegistrationForm()
+            return render(request, 'registration/register.html', {'form': form})
+    else:
+        form = RegistrationForm()
+        return render(request, 'registration/register.html', {'form': form})
 
 
 def simple_upload(request):

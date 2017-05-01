@@ -11,6 +11,7 @@ class Cidadao(models.Model):
     num_bi = models.PositiveIntegerField(null=True, blank=True)
     morada = models.CharField(max_length=100, null=True, blank=True)
     codigo_postal = models.CharField(max_length=8, null=True, blank=True)
+    localidade = models.CharField(max_length=30, null=True, blank=True)
     telefone = models.PositiveIntegerField(null=True, blank=True)
     nro_eleitor = models.PositiveIntegerField(null=True, blank=True)
 
