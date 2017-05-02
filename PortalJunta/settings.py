@@ -15,6 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SITE_URL = 'http://localhost:8000'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -115,6 +116,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#For email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'juntafreguesiaxpto@gmail.com'
+
+#Must generate specific password for your app in [gmail settings][1]
+EMAIL_HOST_PASSWORD = 'portaljunta17'
+
+EMAIL_PORT = 587
+
+#This did the trick
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

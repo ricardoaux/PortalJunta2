@@ -11,6 +11,13 @@ from django.core.serializers import serialize
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import redirect
 from django.db import transaction
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.utils.encoding import force_text
+from django import http
+from django.core.mail import send_mail
+from django.conf import settings
 
 import json
 from django.http import JsonResponse
@@ -48,18 +55,25 @@ def logout_page(request):
 
 @transaction.atomic
 def register_page(request):
+
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = User(username=form.cleaned_data['username'],
                                         password=form.cleaned_data['password1'], email=form.cleaned_data['email'],
-                                        first_name=form.cleaned_data['nome'], last_name=form.cleaned_data['apelido'])
+                                        first_name=form.cleaned_data['nome'], last_name=form.cleaned_data['apelido'],
+                                        is_active = '0')
             user.set_password(user.password)
             user.save()
             cidadao = Cidadao(user=user, num_bi=form.cleaned_data['num_bi'], morada=form.cleaned_data['morada'],
                                 codigo_postal = form.cleaned_data['codigopostal'], localidade=form.cleaned_data['localidade'],
                                 telefone = form.cleaned_data['telefone'], nro_eleitor = form.cleaned_data['nro_eleitor'])
             cidadao.save()
+            token = default_token_generator.make_token(user)
+            uid64 = urlsafe_base64_encode(force_bytes(user.pk))
+            uid = uid64.decode('utf-8')
+            content = settings.SITE_URL+"/utilizador/ativar/"+uid+"/"+token;
+            send_mail("Confirmar Registo na Junta de Freguesia", content, 'ricardoauxiliar@hotmail.com', [user.email], fail_silently=False)
             return render(request, 'registration/register.html', {'registered': True})
         else:
             print(form.errors)
@@ -68,6 +82,23 @@ def register_page(request):
     else:
         form = UserCreationForm()
         return render(request, 'registration/register.html', {'form': form})
+
+
+def activationview(request, uidb64, token):
+    if uidb64 is not None and token is not None:
+        from django.utils.http import urlsafe_base64_decode
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        try:
+            from django.contrib.auth import get_user_model
+            from django.contrib.auth.tokens import default_token_generator
+            user_model = get_user_model()
+            user = user_model.objects.get(pk=uid)
+            if default_token_generator.check_token(user, token) and user.is_active == 0:
+                user_model.objects.filter(pk=uid).update(is_active='1')
+                return render(request, 'login', {'message': "O seu utilizador está ativo"})
+        except:
+            pass
+    return http.HttpResponseRedirect("/error")
 
 
 def simple_upload(request):
@@ -136,12 +167,14 @@ def noticias(request, num=0):
 
 def show_events(request):
     Evento.objects.all().delete()
-    ev = Evento(titulo='Jogo do Benfica', descricao='Ir ao estádio da luz ver o Benfica', data_evento=datetime.now())
-    ev2 = Evento(titulo='Sport Lisboa', descricao='Ola ola', data_evento=datetime.now())
-    ev3 = Evento(titulo='Gato Jonas', descricao='Fazer asneiras', data_evento=datetime.now())
-    ev.save()
-    ev2.save()
-    ev3.save()
+
+    #ev = Evento(titulo='Jogo do Benfica', descricao='Ir ao estádio da luz ver o Benfica', data_evento=datetime.now())
+    #ev2 = Evento(titulo='Sport Lisboa', descricao='Ola ola', data_evento=datetime.now())
+    #ev3 = Evento(titulo='Gato Jonas', descricao='Fazer asneiras', data_evento=datetime.now())
+    #ev.save()
+    #ev2.save()
+    #ev3.save()
+
 
     events_list = list(Evento.objects.all().values())
     print(events_list)

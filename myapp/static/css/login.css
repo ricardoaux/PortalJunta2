@@ -113,3 +113,8 @@
     font-size: 12px;
 }
 
+.textclass h1 {
+  color: red;
+  text-align: center;
+}
+

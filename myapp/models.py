@@ -14,6 +14,7 @@ class Cidadao(models.Model):
     localidade = models.CharField(max_length=30, null=True, blank=True)
     telefone = models.PositiveIntegerField(null=True, blank=True)
     nro_eleitor = models.PositiveIntegerField(null=True, blank=True)
+    aprovado = models.BooleanField(default=False)
 
 
 class Conteudo_Site(models.Model):
