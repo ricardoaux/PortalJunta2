@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
 from myapp.models import Noticia, Evento, Ficheiro, Cidadao
@@ -34,24 +34,33 @@ def index(request):
 
 
 def admin(request):
-    return render(request, 'admin/admin.html')
+    aprovar = show_aprovar(request)
+    return render(request, 'admin/admin.html', {'aprovar': aprovar})
 
 
 def questionario(request):
     return render(request, 'questionario.html')
 
 
-def login(request):
-    return render(request, 'registration/login.html')
-
-
-def main_page(request):
-    return render(request, 'homepage.html', {'user': request.user})
+def mylogin(request):
+    logout(request)
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = form.getUser()
+            login(request, user)
+            return HttpResponseRedirect('/', {'user': request.user})
+        else:
+            return render(request, 'registration/login.html', {'form': form})
+    else:
+        form = LoginForm()
+        return render(request, 'registration/login.html', {'form': form})
 
 
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
+
 
 @transaction.atomic
 def register_page(request):
@@ -76,7 +85,6 @@ def register_page(request):
             send_mail("Confirmar Registo na Junta de Freguesia", content, 'ricardoauxiliar@hotmail.com', [user.email], fail_silently=False)
             return render(request, 'registration/register.html', {'registered': True})
         else:
-            print(form.errors)
             #form = RegistrationForm()
             return render(request, 'registration/register.html', {'form': form})
     else:
@@ -95,7 +103,7 @@ def activationview(request, uidb64, token):
             user = user_model.objects.get(pk=uid)
             if default_token_generator.check_token(user, token) and user.is_active == 0:
                 user_model.objects.filter(pk=uid).update(is_active='1')
-                return render(request, 'login', {'message': "O seu utilizador está ativo"})
+                return HttpResponseRedirect('/login')
         except:
             pass
     return http.HttpResponseRedirect("/error")
@@ -166,7 +174,6 @@ def noticias(request, num=0):
 #functions
 
 def show_events(request):
-    Evento.objects.all().delete()
 
     #ev = Evento(titulo='Jogo do Benfica', descricao='Ir ao estádio da luz ver o Benfica', data_evento=datetime.now())
     #ev2 = Evento(titulo='Sport Lisboa', descricao='Ola ola', data_evento=datetime.now())
@@ -175,9 +182,7 @@ def show_events(request):
     #ev2.save()
     #ev3.save()
 
-
     events_list = list(Evento.objects.all().values())
-    print(events_list)
 
     json_data = json.dumps(events_list, default=myconverter)
 
@@ -205,8 +210,15 @@ def show_news(request, num=''):
 
     return json_data
 
+############################## ADMIN VIEWS ############################
+
+def show_aprovar(request):
+    events_list = Cidadao.objects.filter(aprovado=False)
+    return events_list
+
+
+############ OUTROS ############
 
 def myconverter(o):
     if isinstance(o, datetime):
         return o.__str__()
-

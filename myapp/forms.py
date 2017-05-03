@@ -1,21 +1,45 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate
 from django import forms
 import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from myapp.models import Ficheiro
+from myapp.models import Ficheiro, Cidadao
+from django.contrib.auth.forms import AuthenticationForm
 
 
-class LoginForm(AuthenticationForm):
+class LoginForm(forms.Form):
+    user = None
     username = forms.CharField(label="Username", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+                                   widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
     password = forms.CharField(label="Password", max_length=30,
-                               widget=forms.TextInput(attrs={'type': 'password', 'name': 'password', 'class': 'form-control'}))
+                                   widget=forms.TextInput(
+                                       attrs={'type': 'password', 'name': 'password', 'class': 'form-control'}))
+
+
+    def clean(self):
+        global user
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if not user:
+            raise forms.ValidationError("O utilizador e a password não correspondem")
+        if not user.is_active:
+            raise forms.ValidationError("O utilizador não está activo")
+        if not user.is_superuser:
+            cidadao = Cidadao.objects.get(user=user)
+            aproved = cidadao.aprovado
+            if not aproved:
+                raise forms.ValidationError('O utilizador ainda não foi aprovado')
+        return self.cleaned_data
+
+    def getUser(self):
+        global user
+        return user
 
 
 class UserCreationForm(forms.Form):
-
     username = forms.CharField(label='Username', max_length=30, required=True)
     password1 = forms.CharField(label='Password',
                           widget=forms.PasswordInput())
@@ -55,7 +79,11 @@ class UserCreationForm(forms.Form):
             if len(str(num_bi)) != 8:
                 raise forms.ValidationError('O número do CC é inválido (8 digitos)')
             else:
-                return num_bi
+                try:
+                    Cidadao.objects.get(num_bi = num_bi)
+                except ObjectDoesNotExist:
+                    return num_bi
+                raise forms.ValidationError('O número do BI já existe')
 
     def clean_codigopostal(self):
         if 'codigopostal' in self.cleaned_data:

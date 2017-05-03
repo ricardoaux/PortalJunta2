@@ -18,9 +18,10 @@
     	    <div class="modal-dialog">
 				<div class="loginmodal-container">
                     <h1> Autenticação </h1><br>
-                    {% if form.errors %}
-                        <h2> O seu username ou password não correspondem! </h2>
+                    {% if form.non_field_errors %}
+                        <h2> {{ form.non_field_errors }}</h2>
                     {% endif %}
+
                     <form method="post" action=".">
                     <p><label for="id_username">Username:</label>
                     {{ form.username }}</p>

@@ -100,6 +100,11 @@
   padding-bottom: 20px;
 }
 
+.loginmodal-container h2 ul{
+  list-style-type: none;
+  padding: 0;
+}
+
 .loginmodal-container strong{
   color: green;
   text-align: center;
@@ -112,9 +117,3 @@
 .login-help {
     font-size: 12px;
 }
-
-.textclass h1 {
-  color: red;
-  text-align: center;
-}
-
