@@ -45,4 +45,5 @@ urlpatterns = [
     url(r'^actas/$', views.show_atas, name="actas"),
     url(r'^outros/$', views.show_outros, name="outros"),
     url(r'^utilizador/ativar/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activationview, name='user-activation-link'),
+    url(r'^mensagem/add$', views.send_message, name="mensagem"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

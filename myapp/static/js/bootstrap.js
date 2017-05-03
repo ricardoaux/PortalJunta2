@@ -19,9 +19,9 @@
 
 
 $(document).ready(function(){
-    $('#characterLeft').text('300 caracteres restantes');
+    $('#characterLeft').text('500 caracteres restantes');
     $('#message').keydown(function () {
-        var max = 300;
+        var max = 500;
         var len = $(this).val().length;
         if (len >= max) {
             $('#characterLeft').text('Você atingiu o limite!');

@@ -4,11 +4,9 @@ from django.http import HttpResponse
 from django.contrib.auth import logout, login
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento, Ficheiro, Cidadao
+from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem
 from django.db import models
 from datetime import datetime
-from django.core.serializers import serialize
-from django.core.files.storage import FileSystemStorage
 from django.shortcuts import redirect
 from django.db import transaction
 from django.contrib.auth.tokens import default_token_generator
@@ -18,6 +16,7 @@ from django.utils.encoding import force_text
 from django import http
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 
 import json
 from django.http import JsonResponse
@@ -170,6 +169,30 @@ def noticias(request, num=0):
     news = show_news(request, num);
     return render(request, 'conteudos/noticias.html', {'user': request.user, 'news': news})
 
+
+def send_message(request):
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        subject = request.POST.get('subject')
+
+        try:
+            Mensagem.objects.create(
+                remetente=name,
+                email=email,
+                telefone=mobile,
+                assunto=subject,
+                mensagem=message
+            )
+            messages.success(request, 'Mensagem enviada com sucesso')
+            return HttpResponseRedirect('/')
+        except Exception as e:
+            messages.error(request, 'Mensagem não enviada')
+            return HttpResponseRedirect('/')
+
+    return HttpResponseRedirect('/')
 
 #functions
 

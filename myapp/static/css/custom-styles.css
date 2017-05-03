@@ -114,6 +114,16 @@ margin-bottom: 7px;
                                     letter-spacing: 2px;line-height: 18px; font-size:20px;}
     .loginbtn .btnreg:hover{background: #716a72; color: #fff; text-decoration: none;}
 
+    .loginbtn .messages {
+          list-style-type: none;
+          padding: 0;
+    }
+
+    .loginbtn .messages li {
+        text-align: center;
+        font-size: 14px;
+    }
+
 
 	.logo {display: inline-block;}
 	.logo h1{font-size: 50px; line-height: 52px; color: #716a72; text-transform: uppercase; border-bottom: 1px solid #eaeaea;
@@ -290,6 +300,7 @@ left: auto;
     }
 
     .txt {padding-bottom: 3px; text-align: justify;}
+
 /* ==========================================================================
     Sidebar styles stars here
    ========================================================================== */

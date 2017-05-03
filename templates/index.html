@@ -179,6 +179,18 @@
                             {% endif %}
                             <!-- <a data-toggle="modal" data-target="#login-modal"> <img src="{% static "img/Signin.png" %}" alt="" class="bw"> </a> -->
                             <h1>Junta de Freguesia de algures </h1>
+
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for msg in messages %}
+                                    <li>
+                                        <div class="alert alert-{{msg.level_tag}}" role="alert">
+                                            {{msg.message}}
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                         </div>
                     <div class="menu">
                             <nav class="navbar navbar-default" role="navigation">
@@ -417,7 +429,7 @@
                     <div class="span4">
                         <h1>Formulário de Contacto</h1>
                         <div class="form-area">
-                            <form role="form">
+                            <form role="form" action="/mensagem/add" method="post">
                                 <div class="form-group">
                                     <input type="text" class="span3" id="name" name="name" placeholder="Nome" required>
                                 </div>
@@ -431,10 +443,11 @@
                                     <input type="text" class="span3" id="subject" name="subject" placeholder="Assunto" required>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="span3" type="textarea" id="message" placeholder="Mensagem" maxlength="300" rows="7"></textarea>
+                                    <textarea class="span3" type="textarea" id="message" name="message" placeholder="Mensagem" maxlength="500" rows="10" required></textarea>
                                     <span class="help-block"><p id="characterLeft" class="help-block ">Atingiu o limite de caracteres</p></span>
                                 </div>
-                                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right"> Enviar </button>
+                                {% csrf_token %}
+                                <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right"> Enviar </button>
                             </form>
                         </div>
                     </div>

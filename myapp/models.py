@@ -30,7 +30,6 @@ class Noticia(Conteudo_Site):
     imagem = models.BinaryField()
 
 
-
 class Evento(Conteudo_Site):
     data_evento = models.DateField()
     imagem = models.BinaryField()
@@ -48,4 +47,18 @@ class Ficheiro(Conteudo_Site):
                   default="OUTRO")
     ficheiro = models.FileField(upload_to='documents/')
 
+
+class Conteudo_Utilizador(models.Model):
+    data_insercao = models.DateTimeField(auto_now_add=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
+class Mensagem (Conteudo_Utilizador):
+    remetente = models.CharField(max_length=50)
+    assunto = models.CharField(max_length=60)
+    email = models.EmailField(max_length=50)
+    mensagem = models.CharField(max_length=500)
+    telefone = models.IntegerField()
 
