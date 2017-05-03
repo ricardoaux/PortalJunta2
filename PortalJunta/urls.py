@@ -26,11 +26,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^admin2/$', views.admin, name="admin"),
     url(r'^admin2/documents/add$', views.simple_upload, name="upload_file"),
+    url(r'^admin2/questionario/add$', views.add_questionario, name="add_questionario"),
+
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.mylogin, name='login'),
     url(r'^logout/$', views.logout_page, name="logout_page"),
     url(r'^register/$', views.register_page, name="register_page"),
-    url(r'^questionario/$', views.questionario, name="questionario"),
     url(r'^heraldica/$', views.show_heraldica, name="heraldica"),
     url(r'^historia/$', views.show_historia, name="historia"),
     url(r'^assembleia/composicao/$', views.show_composicao, name="composicao"),
@@ -46,4 +47,8 @@ urlpatterns = [
     url(r'^outros/$', views.show_outros, name="outros"),
     url(r'^utilizador/ativar/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activationview, name='user-activation-link'),
     url(r'^mensagem/add$', views.send_message, name="mensagem"),
+
+    url(r'^questionario/$', views.questionario),
+    url(r'^questionario/(?P<num>[0-9].*)/$', views.questionario2),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2041,6 +2041,11 @@ table {
   padding-bottom: 40px;
 }
 
+.table .margem iframe{
+  width: 100%;
+  float: left;
+}
+
 .table tr.noBorder2 td iframe {
   border: 0;
   width: 350px;

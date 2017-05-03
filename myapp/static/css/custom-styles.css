@@ -121,7 +121,11 @@ margin-bottom: 7px;
 
     .loginbtn .messages li {
         text-align: center;
-        font-size: 14px;
+    }
+
+    .loginbtn .messages .alert{
+        font-size: 16px;
+        text-transform: uppercase;
     }
 
 

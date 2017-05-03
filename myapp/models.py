@@ -48,6 +48,11 @@ class Ficheiro(Conteudo_Site):
     ficheiro = models.FileField(upload_to='documents/')
 
 
+class Questionario(Conteudo_Site):
+    quest = models.CharField(max_length=400)
+    ativo = models.BooleanField(default=True)
+
+
 class Conteudo_Utilizador(models.Model):
     data_insercao = models.DateTimeField(auto_now_add=True, blank=True)
 

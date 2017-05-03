@@ -3,7 +3,7 @@ from django import forms
 import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from myapp.models import Ficheiro, Cidadao
+from myapp.models import Ficheiro, Cidadao, Questionario
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -109,3 +109,9 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = Ficheiro
         fields = ('titulo', 'descricao', 'tipo', 'ficheiro')
+
+
+class QuestionarioForm(forms.ModelForm):
+    class Meta:
+        model = Questionario
+        fields = ('titulo', 'descricao', 'quest')

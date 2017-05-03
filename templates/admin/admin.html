@@ -53,7 +53,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Questionários <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="">Adicionar</a></li>
+                                    <li><a href="/questionario/add">Adicionar</a></li>
                                     <li><a href="">Eliminar</a></li>
                                     <li><a href="">Editar</a></li>
                                 </ul>
@@ -95,11 +95,12 @@
         <div class="container">
             <div class="featured-content">
                  <table class="table">
-                            <tr>
-                                <th> Id </th>
-                                <th> Username </th>
-                            </tr>
                             {% if aprovar.values.first != None %}
+                                <tr>
+                                    <th> Id </th>
+                                    <th> Username </th>
+                                </tr>
+
                                 {% for b in aprovar %}
 
                                     <tr>
@@ -119,12 +120,6 @@
 
         <script src="{% static "js/jquery-1.9.1.js" %}"></script>
         <script src="{% static "js/bootstrap.js" %}"></script>
-
-        {%  else %}
-            <script type="text/javascript">
-                alert("Você não dispõe de permissão!")
-                window.location="/";
-            </script>
     {% endif %}
 
 </body>

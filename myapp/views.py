@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout, login
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem
+from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario
 from django.db import models
 from datetime import datetime
 from django.shortcuts import redirect
@@ -32,13 +32,8 @@ def index(request):
     return render(request, 'index.html', {'user': request.user, 'news': news, 'events': events})
 
 
-def admin(request):
-    aprovar = show_aprovar(request)
-    return render(request, 'admin/admin.html', {'aprovar': aprovar})
-
-
 def questionario(request):
-    return render(request, 'questionario.html')
+    return render(request, 'outros/questionario.html')
 
 
 def mylogin(request):
@@ -170,6 +165,15 @@ def noticias(request, num=0):
     return render(request, 'conteudos/noticias.html', {'user': request.user, 'news': news})
 
 
+def questionario(request):
+    return render(request, 'outros/questionario.html', {'titulo': "Questionários", 'user': request.user, 'quest': Questionario.objects.filter(ativo=True),
+                                                        'opcao': '1'})
+
+def questionario2(request, num=0):
+    return render(request, 'outros/questionario.html', {'user': request.user, 'quest': Questionario.objects.filter(id=num),
+                                                        'opcao': '2'})
+
+
 def send_message(request):
     if request.method == 'POST':
         message = request.POST.get('message')
@@ -228,16 +232,41 @@ def show_news(request, num=''):
     else:
         items_list = list(Noticia.objects.filter(id=num).values())
 
-    print(items_list)
     json_data = json.dumps(items_list, default=myconverter)
 
     return json_data
 
 ############################## ADMIN VIEWS ############################
 
+
+def admin(request):
+    if request.user.username == 'admin':
+        aprovar = show_aprovar(request)
+        return render(request, 'admin/admin.html', {'aprovar': aprovar})
+    else:
+        messages.error(request, 'Não dispõe de permissões')
+        return HttpResponseRedirect('/')
+
+
 def show_aprovar(request):
     events_list = Cidadao.objects.filter(aprovado=False)
     return events_list
+
+
+def add_questionario(request):
+    if request.user.username == 'admin':
+        if request.method == 'POST':
+            form = QuestionarioForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('admin')
+        else:
+            form = QuestionarioForm()
+            return render(request, 'admin/add_questionario.html', {'form': form})
+    else:
+        messages.error(request, 'Não dispõe de permissões')
+        return HttpResponseRedirect('/')
+
 
 
 ############ OUTROS ############
