@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> Lista de Votações </title>
+</head>
+<body>
+    {% if poll_query %}
+        {% if opt == '1' %}
+            <ul>
+                {% for poll in poll_query %}
+                    <li><a href='{{poll.id}}/'>{{poll.titulo}}</a></li>
+                {% endfor %}
+            </ul>
+        {% elif opt == '2' %}
+              <table>
+                  {% for b in poll_query %}
+                      <script>
+                          $( document ).ready(function() {
+                              document.title = '{{ b.titulo }}';
+                          });
+                      </script>
+                      <tr>
+                          <th> Título </th>
+                          <th> Descrição </th>
+                          <th> Data Inserção </th>
+                      </tr>
+                      <tr>
+                          <td>{{ b.titulo }}</td>
+                          <td>{{ b.descricao }}</td>
+                          <td>{{ b.data_insercao }}</td>
+                      </tr>
+                      <tr>
+                        <th> Opções </th>
+                      </tr>
+                      <tr>
+                          {% for c in opcoes %}
+                              <tr>
+                              <td> {{ c.texto}} </td>
+                              </tr>
+                          {% endfor %}
+                      </tr>
+
+                  {% endfor %}
+              </table>
+        {% endif %}
+    {% else %}
+        <p>Não há votações disponíveis!</p>
+    {% endif %}
+
+</body>
+</html>

@@ -53,6 +53,21 @@ class Questionario(Conteudo_Site):
     ativo = models.BooleanField(default=True)
 
 
+class Pergunta(Conteudo_Site):
+    ativo = models.BooleanField(default=True)
+
+
+class Opcao(models.Model):
+    pergunta = models.ForeignKey(Pergunta)
+    texto = models.CharField(max_length=100)
+
+
+class Votacao(models.Model):
+    utilizador = models.ForeignKey(User)
+    pergunta = models.ForeignKey(Pergunta)
+    respondido = models.ForeignKey(Opcao)
+
+
 class Conteudo_Utilizador(models.Model):
     data_insercao = models.DateTimeField(auto_now_add=True, blank=True)
 

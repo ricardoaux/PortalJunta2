@@ -2037,6 +2037,19 @@ table {
   width: 50%;
 }
 
+.table .terco {
+  width: 33.33%;
+  text-align: center;
+}
+
+.table .margem2{
+  width: 100%;
+  text-align: left;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  padding-left: 8%;
+}
+
 .table .margem{
   padding-bottom: 40px;
 }
@@ -2060,6 +2073,11 @@ table {
 .table thead th {
   vertical-align: bottom;
 }
+
+.table .btn2{color: #fff; padding: 12px 10px; border-radius: 5px; background: #c85b5f; text-transform: uppercase; border:none; text-shadow: none; font-family: 'source_sans_problack';
+                                    letter-spacing: 2px; font-size: 17px;}
+.table .btn2:hover{background: #716a72; color: #fff;}
+
 
 .table caption + thead tr:first-child th,
 .table caption + thead tr:first-child td,

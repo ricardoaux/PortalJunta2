@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout, login
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario
+from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario, Pergunta, Opcao, Votacao
 from django.db import models
 from datetime import datetime
 from django.shortcuts import redirect
@@ -173,6 +173,16 @@ def questionario2(request, num=0):
     return render(request, 'outros/questionario.html', {'user': request.user, 'quest': Questionario.objects.filter(id=num),
                                                         'opcao': '2'})
 
+def show_votacao(request):
+    return render(request, 'outros/votacoes.html', {'poll_query': Pergunta.objects.all().order_by('data_insercao'),
+                                                    'opt': '1'})
+
+
+def show_votacao2(request, num):
+    pergunta = Pergunta.objects.filter(id=num).order_by('data_insercao')
+    opcoes = Opcao.objects.filter(pergunta=pergunta)
+    return render(request, 'outros/votacoes.html', {'poll_query': pergunta, 'opcoes': opcoes, 'opt': '2', 'num':num})
+
 
 def send_message(request):
     if request.method == 'POST':
@@ -267,6 +277,53 @@ def add_questionario(request):
         messages.error(request, 'Não dispõe de permissões')
         return HttpResponseRedirect('/')
 
+
+def add_pergunta(request):
+    if request.user.username == 'admin':
+        if request.method == 'POST':
+            form = PerguntaForm(request.POST)
+            if form.is_valid():
+                new = form.save()
+                return redirect('/admin2/pergunta/'+str(new.id)+'/add')
+        else:
+            form = PerguntaForm()
+        return render(request, 'admin/add_pergunta.html', {'form': form})
+    else:
+        messages.error(request, 'Não dispõe de permissões')
+        return HttpResponseRedirect('/')
+
+
+def add_opcao(request, pergunta_id):
+    if request.user.username == 'admin':
+        pergunta = Pergunta.objects.get(id=pergunta_id)
+        if request.method == 'POST':
+            form = OpcaoForm(request.POST)
+            if form.is_valid():
+                # uses false commit to save the poll as the current poll ID, sets the initial vote to 0, and saves all choices the user
+                # has put in the form
+                add_pergunta = form.save(commit=False)
+                add_pergunta.pergunta = pergunta
+                #add_pergunta.vote = 0
+                add_pergunta.save()
+                form.save()
+            return redirect('/admin2/pergunta/' + str(pergunta.id) + '/add')
+        else:
+            form = OpcaoForm()
+        return render(request, 'admin/add_opcao.html', {'form': form, 'poll_id': pergunta_id})
+    else:
+        messages.error(request, 'Não dispõe de permissões')
+        return HttpResponseRedirect('/')
+
+
+def view_polls(request):
+    return render(request, 'admin/perguntas.html', {'poll_query': Pergunta.objects.all().order_by('data_insercao'),
+                                                    'opt': '1'})
+
+
+def view_polls2(request, num):
+    pergunta = Pergunta.objects.filter(id=num).order_by('data_insercao')
+    opcoes = Opcao.objects.filter(pergunta=pergunta)
+    return render(request, 'admin/perguntas.html', {'poll_query': pergunta, 'opcoes': opcoes, 'opt': '2', 'num':num})
 
 
 ############ OUTROS ############
