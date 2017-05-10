@@ -13,10 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
-from myapp.forms import LoginForm
 from myapp import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -51,9 +49,13 @@ urlpatterns = [
     url(r'^outros/$', views.show_outros, name="outros"),
     url(r'^utilizador/ativar/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activationview, name='user-activation-link'),
     url(r'^mensagem/add$', views.send_message, name="mensagem"),
-    url(r'^votacao/$', views.show_votacao),
+    url(r'^votacao/$', views.show_votacao, name="votacao"),
     url(r'^votacao/(?P<num>[0-9].*)/$', views.show_votacao2),
+    url(r'^votacao/(?P<pergunta_id>[0-9].*)/votar$', views.votar, name='votar'),
     url(r'^questionario/$', views.questionario),
     url(r'^questionario/(?P<num>[0-9].*)/$', views.questionario2),
 
+    url(r'^autenticacao/error/$', views.auth_error, name='auth_error'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = views.my_404_view

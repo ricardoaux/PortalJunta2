@@ -63,9 +63,9 @@ class Opcao(models.Model):
 
 
 class Votacao(models.Model):
-    utilizador = models.ForeignKey(User)
-    pergunta = models.ForeignKey(Pergunta)
-    respondido = models.ForeignKey(Opcao)
+    utilizador = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    pergunta = models.ForeignKey(Pergunta, on_delete=models.CASCADE, null=False)
+    respondido = models.ForeignKey(Opcao, on_delete=models.CASCADE, null=False)
 
 
 class Conteudo_Utilizador(models.Model):

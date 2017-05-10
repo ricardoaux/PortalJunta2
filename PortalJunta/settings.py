@@ -24,10 +24,10 @@ SITE_URL = 'http://localhost:8000'
 SECRET_KEY = '-(pw3u-gm9ko81&xn-0$57kj07%1_qiku_=$huz3rmee=@8*ue'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -147,6 +147,10 @@ USE_L10N = True
 USE_TZ = True
 
 SITE_ID = 1
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 600 # set just 10 seconds to test
+SESSION_SAVE_EVERY_REQUEST = True
 
 
 MEDIA_URL = '/media/'

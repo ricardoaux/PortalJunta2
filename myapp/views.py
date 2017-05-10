@@ -32,6 +32,14 @@ def index(request):
     return render(request, 'index.html', {'user': request.user, 'news': news, 'events': events})
 
 
+def auth_error(request):
+    return render(request, 'error/erro_autenticao.html', status=404)
+
+def my_404_view(request):
+    return render(request, 'error/404.html', status=404)
+
+
+
 def questionario(request):
     return render(request, 'outros/questionario.html')
 
@@ -173,15 +181,39 @@ def questionario2(request, num=0):
     return render(request, 'outros/questionario.html', {'user': request.user, 'quest': Questionario.objects.filter(id=num),
                                                         'opcao': '2'})
 
+
+@login_required(login_url='auth_error')
+def votar(request, pergunta_id=0):
+    if request.method == 'POST':
+        user = request.user.id
+        choice = request.POST.get('choice')
+        try:
+            voto = Votacao(None, user, pergunta_id, choice)
+            voto.save()
+            messages.success(request, 'Voto submetido')
+            return HttpResponseRedirect('./..')
+        except Exception as e:
+            print (e)
+            messages.error(request, 'Erro ao votar')
+            return HttpResponseRedirect('./..')
+
+
+@login_required(login_url='auth_error')
 def show_votacao(request):
     return render(request, 'outros/votacoes.html', {'poll_query': Pergunta.objects.all().order_by('data_insercao'),
                                                     'opt': '1'})
 
 
+@login_required(login_url='auth_error')
 def show_votacao2(request, num):
     pergunta = Pergunta.objects.filter(id=num).order_by('data_insercao')
     opcoes = Opcao.objects.filter(pergunta=pergunta)
-    return render(request, 'outros/votacoes.html', {'poll_query': pergunta, 'opcoes': opcoes, 'opt': '2', 'num':num})
+    control = Votacao.objects.filter(utilizador=request.user.id, pergunta=num)
+    if control.count()!=0:
+        messages.error(request, 'Já efetuou o seu voto anteriormente')
+        return HttpResponseRedirect('./..')
+    else:
+        return render(request, 'outros/votacoes.html', {'poll_query': pergunta, 'opcoes': opcoes, 'opt': '2', 'num':num})
 
 
 def send_message(request):
