@@ -310,6 +310,21 @@ def add_questionario(request):
         return HttpResponseRedirect('/')
 
 
+def add_noticia(request):
+    if request.user.username == 'admin':
+        if request.method == 'POST':
+            form = NoticiaForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('admin')
+        else:
+            form = NoticiaForm()
+            return render(request, 'admin/add_noticias.html', {'form': form})
+    else:
+        messages.error(request, 'Não dispõe de permissões')
+        return HttpResponseRedirect('/')
+
+
 def add_pergunta(request):
     if request.user.username == 'admin':
         if request.method == 'POST':

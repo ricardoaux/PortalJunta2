@@ -27,12 +27,12 @@ class Conteudo_Site(models.Model):
 
 
 class Noticia(Conteudo_Site):
-    imagem = models.BinaryField()
+    imagem = models.ImageField()
 
 
 class Evento(Conteudo_Site):
     data_evento = models.DateField()
-    imagem = models.BinaryField()
+    imagem = models.ImageField()
 
 
 class Ficheiro(Conteudo_Site):

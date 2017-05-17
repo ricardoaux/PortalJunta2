@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^admin2/pergunta/(?P<pergunta_id>\d+)/add$', views.add_opcao, name = "add_opcao"),
     url(r'^admin2/pergunta/$', views.view_polls, name = "view_pergunta"),
     url(r'^admin2/pergunta/(?P<num>\d+)/$', views.view_polls2, name="view_pergunta2"),
+    url(r'^admin2/noticia/add$', views.add_noticia, name="add_noticia"),
 
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.mylogin, name='login'),
