@@ -111,19 +111,6 @@ def activationview(request, uidb64, token):
     return http.HttpResponseRedirect("/error")
 
 
-def simple_upload(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('admin')
-    else:
-        form = DocumentForm()
-    return render(request, 'admin/upload_file.html', {
-        'form': form
-    })
-
-
 def show_acao(request):
   return render(request, 'outros/verpdf.html', {'user': request.user, 'titulo': "Planos de Ação", 'obj': Ficheiro.objects.filter(tipo="ACAO")})
 
@@ -304,25 +291,56 @@ def add_questionario(request):
                 return redirect('admin')
         else:
             form = QuestionarioForm()
-            return render(request, 'admin/add_questionario.html', {'form': form})
+        return render(request, 'admin/add_questionario.html', {'form': form})
     else:
         messages.error(request, 'Não dispõe de permissões')
         return HttpResponseRedirect('/')
 
-
-def add_noticia(request):
-    if request.user.username == 'admin':
-        if request.method == 'POST':
-            form = NoticiaForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('admin')
-        else:
-            form = NoticiaForm()
-            return render(request, 'admin/add_noticias.html', {'form': form})
-    else:
-        messages.error(request, 'Não dispõe de permissões')
-        return HttpResponseRedirect('/')
+#
+# def add_noticia(request):
+#     if request.user.username == 'admin':
+#         if request.method == 'POST':
+#             form = NoticiaForm(request.POST, request.FILES)
+#             if form.is_valid():
+#                 form.save()
+#                 return redirect('admin')
+#         else:
+#             form = NoticiaForm()
+#         return render(request, 'admin/add_noticias.html', {'form': form})
+#     else:
+#         messages.error(request, 'Não dispõe de permissões')
+#         return HttpResponseRedirect('/')
+#
+#
+# def add_evento(request):
+#     if request.user.username == 'admin':
+#         if request.method == 'POST':
+#             form = EventoForm(request.POST, request.FILES)
+#             if form.is_valid():
+#                 form.save()
+#                 return redirect('admin')
+#             #else:
+#              #   messages.error(request, 'Erro ao inserir evento')
+#              #   return redirect('admin')
+#         else:
+#             form = EventoForm()
+#         return render(request, 'admin/add_eventos.html', {'form': form})
+#     else:
+#         messages.error(request, 'Não dispõe de permissões')
+#         return HttpResponseRedirect('/')
+#
+#
+# def simple_upload(request):
+#     if request.method == 'POST':
+#         form = DocumentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('admin')
+#     else:
+#         form = DocumentForm()
+#     return render(request, 'admin/upload_file.html', {
+#         'form': form
+#     })
 
 
 def add_pergunta(request):

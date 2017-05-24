@@ -3,7 +3,10 @@ from django import forms
 import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from myapp.models import Ficheiro, Cidadao, Questionario, Pergunta, Opcao, Noticia
+from django.conf import settings
+from myapp.models import Ficheiro, Cidadao, Questionario, Pergunta, Opcao, Noticia, Evento
+from datetime import datetime, timezone
+from myapp.widgets import SplitSelectDateTimeWidget
 
 
 class LoginForm(forms.Form):
@@ -131,4 +134,20 @@ class OpcaoForm(forms.ModelForm):
 class NoticiaForm(forms.ModelForm):
     class Meta:
         model = Noticia
-        fields = ('titulo', 'descricao',)
+        fields = ('titulo', 'descricao', 'imagem')
+
+
+class EventoForm(forms.ModelForm):
+    #def __init__(self, *args, **kwargs):
+        #super(EventoForm, self).__init__(*args, **kwargs)
+        #    self.fields['data_evento'] = forms.DateTimeField(input_formats=settings.DATE_INPUT_FORMATS, initial=date.today)
+        #self.fields['data_evento'].widget = widgets.AdminSplitDateTime()
+
+    #mydate = forms.DateField(widget=widgets.AdminDateWidget)
+    #mytime = forms.TimeField(widget=SelectTimeWidget())
+    data_evento = forms.DateTimeField(widget=SplitSelectDateTimeWidget(hour_step=1, minute_step=30, second_step=30, twelve_hr=False, years=[2017,2018,2019,2020,2021,2022,2023]))
+
+
+    class Meta:
+        model = Evento
+        fields = ('titulo', 'descricao', 'imagem')

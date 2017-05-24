@@ -24,7 +24,7 @@ SITE_URL = 'http://localhost:8000'
 SECRET_KEY = '-(pw3u-gm9ko81&xn-0$57kj07%1_qiku_=$huz3rmee=@8*ue'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['*']
@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'sslserver',
     'myapp',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -154,6 +153,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+STATIC_ROOT = '/home/ricardo/PortalJunta/myapp/static/'
 STATIC_URL = '/myapp/static/'
 
 
+DATE_INPUT_FORMATS = ('%d-%m-%Y %H:%M')

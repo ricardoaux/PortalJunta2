@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from myapp.models import Noticia, Evento, Ficheiro
 
 from .models import Cidadao
 
@@ -21,5 +22,15 @@ class CustomUserAdmin(UserAdmin):
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 
+class NoticiaAdmin(admin.ModelAdmin):
+    list_display = ("titulo", 'data_insercao')
+
+
+class FicheiroAdmin(admin.ModelAdmin):
+    list_display = ("titulo", 'data_insercao', 'tipo')
+
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(Noticia, NoticiaAdmin)
+admin.site.register(Ficheiro, FicheiroAdmin)
+admin.site.register(Evento)

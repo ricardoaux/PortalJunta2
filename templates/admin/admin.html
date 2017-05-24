@@ -28,7 +28,18 @@
                     <div class="loginbtn">
                             <p> Bem Vindo {{ user.username }} </p>
                             <a href="/logout" class="btnout">logout</a>
-                        <h1> Administração </h1>
+                            <h1> Administração </h1>
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for msg in messages %}
+                                    <li>
+                                        <div class="alert alert-{{msg.level_tag}}" role="alert">
+                                            {{msg.message}}
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                     </div>
                 <div class="menu">
                     <nav class="navbar navbar-default" role="navigation">

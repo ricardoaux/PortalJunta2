@@ -23,13 +23,14 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^admin2/$', views.admin, name="admin"),
-    url(r'^admin2/documents/add$', views.simple_upload, name="upload_file"),
+    #url(r'^admin2/documents/add$', views.simple_upload, name="upload_file"),
     url(r'^admin2/questionario/add$', views.add_questionario, name="add_questionario"),
     url(r'^admin2/pergunta/add$', views.add_pergunta, name="add_pergunta"),
     url(r'^admin2/pergunta/(?P<pergunta_id>\d+)/add$', views.add_opcao, name = "add_opcao"),
     url(r'^admin2/pergunta/$', views.view_polls, name = "view_pergunta"),
     url(r'^admin2/pergunta/(?P<num>\d+)/$', views.view_polls2, name="view_pergunta2"),
-    url(r'^admin2/noticia/add$', views.add_noticia, name="add_noticia"),
+    #url(r'^admin2/noticia/add$', views.add_noticia, name="add_noticia"),
+    #url(r'^admin2/evento/add$', views.add_evento, name="add_evento"),
 
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.mylogin, name='login'),

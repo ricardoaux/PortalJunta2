@@ -27,12 +27,12 @@ class Conteudo_Site(models.Model):
 
 
 class Noticia(Conteudo_Site):
-    imagem = models.ImageField()
+    imagem = models.ImageField(upload_to='news_images/')
 
 
 class Evento(Conteudo_Site):
-    data_evento = models.DateField()
-    imagem = models.ImageField()
+    data_evento = models.DateTimeField()
+    imagem = models.ImageField(upload_to='events_images/')
 
 
 class Ficheiro(Conteudo_Site):
