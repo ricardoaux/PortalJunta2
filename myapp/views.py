@@ -230,14 +230,6 @@ def send_message(request):
 #functions
 
 def show_events(request):
-
-    #ev = Evento(titulo='Jogo do Benfica', descricao='Ir ao estádio da luz ver o Benfica', data_evento=datetime.now())
-    #ev2 = Evento(titulo='Sport Lisboa', descricao='Ola ola', data_evento=datetime.now())
-    #ev3 = Evento(titulo='Gato Jonas', descricao='Fazer asneiras', data_evento=datetime.now())
-    #ev.save()
-    #ev2.save()
-    #ev3.save()
-
     events_list = list(Evento.objects.all().values())
 
     json_data = json.dumps(events_list, default=myconverter)
@@ -246,16 +238,6 @@ def show_events(request):
 
 
 def show_news(request, num=''):
-
-    #Noticia.objects.filter(titulo='Petr').delete()
-    #Noticia.objects.filter(titulo='Benfica ganhou').delete()
-    #Noticia.objects.filter(titulo='Jonas o Gato').delete()
-    #news = Noticia(titulo='Petr', descricao="porhjshjhjdsa jhsjdh adks k lkjs")
-    #news2 = Noticia(titulo='Benfica ganhou', descricao="glorioso slb sakljaklj ksjakld  dsjhsd s")
-    #news3 = Noticia(titulo='Jonas o Gato', descricao="o jonas e um gato muito cromo kdsajks asjhjsa jsk sahkj asdjg ajk sa a")
-    #news.save()
-    #news2.save()
-    #news3.save()
     if num == 0:
         items_list = list(Noticia.objects.all().values().order_by('-id'))
     else:
@@ -282,20 +264,20 @@ def show_aprovar(request):
     return events_list
 
 
-def add_questionario(request):
-    if request.user.username == 'admin':
-        if request.method == 'POST':
-            form = QuestionarioForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('admin')
-        else:
-            form = QuestionarioForm()
-        return render(request, 'admin/add_questionario.html', {'form': form})
-    else:
-        messages.error(request, 'Não dispõe de permissões')
-        return HttpResponseRedirect('/')
-
+# def add_questionario(request):
+#     if request.user.username == 'admin':
+#         if request.method == 'POST':
+#             form = QuestionarioForm(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 return redirect('admin')
+#         else:
+#             form = QuestionarioForm()
+#         return render(request, 'admin/add_questionario.html', {'form': form})
+#     else:
+#         messages.error(request, 'Não dispõe de permissões')
+#         return HttpResponseRedirect('/')
+#
 #
 # def add_noticia(request):
 #     if request.user.username == 'admin':

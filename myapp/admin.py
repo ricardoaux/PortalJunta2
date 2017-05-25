@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from myapp.models import Noticia, Evento, Ficheiro
+from myapp.models import Noticia, Evento, Ficheiro, Questionario, Pergunta, Opcao, Votacao
 
 from .models import Cidadao
 
@@ -29,8 +29,29 @@ class NoticiaAdmin(admin.ModelAdmin):
 class FicheiroAdmin(admin.ModelAdmin):
     list_display = ("titulo", 'data_insercao', 'tipo')
 
+
+class EventoAdmin(admin.ModelAdmin):
+    list_display = ("titulo", 'data_evento', 'data_insercao')
+
+
+class QuestionarioAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'data_insercao')
+
+
+class OpcaoAdmin(admin.TabularInline):
+    model = Opcao
+    extra = 2
+
+
+class PerguntaAdmin(admin.ModelAdmin):
+    inlines = (OpcaoAdmin, )
+    list_display = ('titulo', 'data_insercao', 'ativo')
+
+
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Noticia, NoticiaAdmin)
 admin.site.register(Ficheiro, FicheiroAdmin)
-admin.site.register(Evento)
+admin.site.register(Evento, EventoAdmin)
+admin.site.register(Questionario, QuestionarioAdmin)
+admin.site.register(Pergunta, PerguntaAdmin)
