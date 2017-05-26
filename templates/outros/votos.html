@@ -121,86 +121,21 @@
                 <div class="container">
                     <div class="featured-content">
                         <table class="table">
-                            {% if opt == '1' %}
-                                <script>
-                                    $( document ).ready(function() {
-                                        document.title = 'Votações';
-                                        document.getElementById('titulo1').innerHTML = "<h1>" + 'Votações' + "</h1>";
-                                    });
-                                </script>
-                                {% if poll_query.values.first != None %}
-                                    {% for b in poll_query %}
-                                        <tr>
-                                            <th class="metade"> Titulo </th>
-                                            <th> Data Inserção </th>
-                                            <th>  </th>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ b.titulo }} </td>
-                                            <td>{{ b.data_insercao }}</td>
-                                            <td> <a href='/votacao/{{ b.id }}'> Votar </a></td>
-                                            <td> <a href='/votacao/votos/{{ b.id }}'> Resultados </a></td>
-                                        </tr>
-                                        <tr>
-                                            <th> Descricao </th>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" class="margem"> {{ b.descricao }}</td>
-                                        </tr>
+                            <tr>
+                                <th class="metade"> Opção </th>
+                                <th> Número de Votos </th>
+                                <th> Percentagem </th>
+                            </tr>
 
-                                    {% endfor %}
-                                {% else %}
-                                    <div class = "textclass">
-                                        <h2> Sem Questionários Disponíveis </h2>
-                                    </div>
-                                {% endif %}
-                            {% elif opt == '2' %}
-                                {% if poll_query.values.first != None %}
-                                    {% for b in poll_query %}
-                                        <script>
-                                            $( document ).ready(function() {
-                                                document.title = '{{ b.titulo }}';
-                                                document.getElementById('titulo1').innerHTML = "<h1>" + '{{ b.titulo }}' + "</h1>";
-                                            });
-                                        </script>
+                            {% for b in poll_query %}
 
-                                         <tr>
-                                            <th class="terco"> Titulo </th>
-                                            <th class="terco"> Descrição </th>
-                                            <th class="terco"> Data Inserção </th>
-                                        </tr>
-                                        <tr>
-                                            <td class="terco">{{ b.titulo }}</td>
-                                            <td class="terco">{{ b.descricao }}</td>
-                                            <td class="terco">{{ b.data_insercao }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td> {{ b.opt }} </td>
+                                        <td> {{ b.qtd }} </td>
+                                        <td> {{ b.perc }} % </td>
+                                    </tr>
 
-                                        <tr>
-                                            <td colspan="3" class="margem2">
-                                                {% if opcoes %}
-                                                    <form method="post" action="votar" id="voteForm"> {% csrf_token %}
-                                                        {% for opcao in opcoes %}
-                                                            <p>
-                                                                <input type="radio" name="choice" id="choice" value="{{opcao.id}}">
-                                                                {{opcao.texto}}
-                                                                </input>
-                                                            </p>
-                                                        {% endfor %}
-                                                        <input class="btn2" type="submit" id="submit" value="Votar" />
-                                                    </form>
-                                                {% else %}
-                                                    <p> Não podem ser adicionador votos! </p>
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-
-                                    {% endfor %}
-                                {% else %}
-                                    <div class = "textclass">
-                                        <h2> A votação não existe </h2>
-                                    </div>
-                                {% endif %}
-                            {% endif %}
+                            {% endfor %}
                         </table>
                     </div>
                 </div>

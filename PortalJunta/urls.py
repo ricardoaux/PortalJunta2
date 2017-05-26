@@ -18,19 +18,19 @@ from django.contrib import admin
 from myapp import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^admin2/$', views.admin, name="admin"),
-    #url(r'^admin2/documents/add$', views.simple_upload, name="upload_file"),
-    #url(r'^admin2/questionario/add$', views.add_questionario, name="add_questionario"),
-    #url(r'^admin2/pergunta/add$', views.add_pergunta, name="add_pergunta"),
-    #url(r'^admin2/pergunta/(?P<pergunta_id>\d+)/add$', views.add_opcao, name = "add_opcao"),
-    #url(r'^admin2/pergunta/$', views.view_polls, name = "view_pergunta"),
-    #url(r'^admin2/pergunta/(?P<num>\d+)/$', views.view_polls2, name="view_pergunta2"),
-    #url(r'^admin2/noticia/add$', views.add_noticia, name="add_noticia"),
-    #url(r'^admin2/evento/add$', views.add_evento, name="add_evento"),
+    url(r'^manager/utilizador', RedirectView.as_view(url="/admin/auth/user")),
+    url(r'^manager/evento', RedirectView.as_view(url="/admin/myapp/evento")),
+    url(r'^manager/noticia', RedirectView.as_view(url="/admin/myapp/noticia")),
+    url(r'^manager/ficheiro', RedirectView.as_view(url="/admin/myapp/ficheiro")),
+    url(r'^manager/questionario', RedirectView.as_view(url="/admin/myapp/questionario")),
+    url(r'^manager/pergunta', RedirectView.as_view(url="/admin/myapp/pergunta")),
+    url(r'^manager/$', views.admin, name="admin"),
+
 
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.mylogin, name='login'),
@@ -56,6 +56,7 @@ urlpatterns = [
     url(r'^votacao/(?P<pergunta_id>[0-9].*)/votar$', views.votar, name='votar'),
     url(r'^questionario/$', views.questionario),
     url(r'^questionario/(?P<num>[0-9].*)/$', views.questionario2),
+    url(r'^votacao/votos/(?P<num>[0-9].*)/$', views.show_votos),
 
     url(r'^autenticacao/error/$', views.auth_error, name='auth_error'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

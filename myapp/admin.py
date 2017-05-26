@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from myapp.models import Noticia, Evento, Ficheiro, Questionario, Pergunta, Opcao, Votacao
 
-from .models import Cidadao
+from .models import Cidadao, Noticia, Evento, Ficheiro, Questionario, Pergunta, Opcao
 
 
 class CidadaoInline(admin.StackedInline):
@@ -55,3 +54,5 @@ admin.site.register(Ficheiro, FicheiroAdmin)
 admin.site.register(Evento, EventoAdmin)
 admin.site.register(Questionario, QuestionarioAdmin)
 admin.site.register(Pergunta, PerguntaAdmin)
+
+

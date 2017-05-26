@@ -15,7 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SITE_URL = 'http://localhost:8000'
+SITE_URL = 'http://localhost'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -24,7 +24,7 @@ SITE_URL = 'http://localhost:8000'
 SECRET_KEY = '-(pw3u-gm9ko81&xn-0$57kj07%1_qiku_=$huz3rmee=@8*ue'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['*']
@@ -157,4 +157,3 @@ STATIC_ROOT = '/home/ricardo/PortalJunta/myapp/static/'
 STATIC_URL = '/myapp/static/'
 
 
-DATE_INPUT_FORMATS = ('%d-%m-%Y %H:%M')

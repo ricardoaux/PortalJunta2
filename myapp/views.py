@@ -17,9 +17,9 @@ from django import http
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.db.models import Count
 
 import json
-from django.http import JsonResponse
 
 
 # Create your views here.
@@ -35,9 +35,9 @@ def index(request):
 def auth_error(request):
     return render(request, 'error/erro_autenticao.html', status=404)
 
+
 def my_404_view(request):
     return render(request, 'error/404.html', status=404)
-
 
 
 def questionario(request):
@@ -201,6 +201,28 @@ def show_votacao2(request, num):
         return HttpResponseRedirect('./..')
     else:
         return render(request, 'outros/votacoes.html', {'poll_query': pergunta, 'opcoes': opcoes, 'opt': '2', 'num':num})
+
+
+@login_required(login_url='auth_error')
+def show_votos(request, num):
+    temp2=[]
+    temp=[]
+    pergunta = Pergunta.objects.filter(id=num).order_by('data_insercao')
+    opcao = Opcao.objects.filter(pergunta=pergunta)
+    votos = Votacao.objects.filter(pergunta=pergunta).values('respondido__texto').annotate(total=Count('respondido')).order_by('-total')
+    count = Votacao.objects.filter(pergunta=pergunta).count()
+
+    for vot in votos:
+        temp2.append(vot['respondido__texto'])
+        perc = vot['total']/count * 100;
+        perc = "{0:.2f}".format(perc)
+        temp.append({'opt':vot['respondido__texto'],'qtd':vot['total'],'perc':perc})
+
+    for op in opcao:
+        if not op.texto in temp2:
+            temp.append({'opt':op.texto,'qtd':'0','perc':'0'})
+
+    return render(request, 'outros/votos.html', {'poll_query':temp, 'num':num})
 
 
 def send_message(request):

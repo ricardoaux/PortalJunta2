@@ -8,16 +8,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
-        <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
-        <link rel="stylesheet" href="{% static "css/custom-styles.css" %}">
-        <link rel="stylesheet" href="{% static "css/font-awesome.css" %}">
-        <link rel="stylesheet" href="{% static "css/component.css" %}">
-        <link rel="stylesheet" href="{% static "css/font-awesome-ie7.css" %}">
-        <link rel="stylesheet" href="{% static "css/login.css" %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-responsive.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom-styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/component.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome-ie7.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
-        <script src="{% static "js/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="{% static 'js/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+        <script src="{% static 'js/jquery-1.9.1.js' %}"></script>
 
     </head>
 <body>
@@ -41,50 +41,16 @@
                                 </ul>
                             {% endif %}
                     </div>
+                </div>
                 <div class="menu">
                     <nav class="navbar navbar-default" role="navigation">
                         <ul class="nav navbar-nav">
-                            <li><a href="/admin">Utilizadores</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Noticias <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="">Adicionar</a></li>
-                                    <li><a href="">Eliminar</a></li>
-                                    <li><a href="">Editar</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Eventos <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="">Adicionar</a></li>
-                                    <li><a href="">Eliminar</a></li>
-                                    <li><a href="">Editar</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Questionários <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/admin2/questionario/add">Adicionar</a></li>
-                                    <li><a href="">Eliminar</a></li>
-                                    <li><a href="">Editar</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Votações <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/admin2/pergunta/add">Adicionar</a></li>
-                                    <li><a href="">Eliminar</a></li>
-                                    <li><a href="/admin2/pergunta">Editar</a></li>
-                                    <li><a href="">Resultados</a></li>
-                                </ul>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Gestão e Orçamento <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/admin2/documents/add">Adicionar</a></li>
-                                    <li><a href="">Eliminar</a></li>
-                                    <li><a href="">Editar</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/manager/utilizador">Utilizadores</a></li>
+                            <li><a href="/manager/noticia">Notícias</a></li>
+                            <li><a href="/manager/evento">Eventos</a></li>
+                            <li><a href="/manager/questionario">Questionários</a></li>
+                            <li><a href="/manager/ficheiro">Documentos</a></li>
+                            <li><a href="/manager/pergunta">Votações</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -129,8 +95,8 @@
             </div>
         </div>
 
-        <script src="{% static "js/jquery-1.9.1.js" %}"></script>
-        <script src="{% static "js/bootstrap.js" %}"></script>
+        <script src="{% static 'js/jquery-1.9.1.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
     {% endif %}
 
 </body>
