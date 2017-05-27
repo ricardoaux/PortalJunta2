@@ -13,16 +13,19 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
-        <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
-        <link rel="stylesheet" href="{% static "css/custom-styles.css" %}">
-        <link rel="stylesheet" href="{% static "css/font-awesome.css" %}">
-        <link rel="stylesheet" href="{% static "css/component.css" %}">
-        <link rel="stylesheet" href="{% static "css/font-awesome-ie7.css" %}">
-        <link rel="stylesheet" href="{% static "css/login.css" %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-responsive.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom-styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/component.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome-ie7.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
-        <script src="{% static "js/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="{% static 'js/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+        <script src="{% static 'js/jquery-1.9.1.js' %}"></script>
+
+        <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5928a1e69f0427001183fdf4&product=inline-share-buttons"></script>
+
 
 </head>
 <body>
@@ -40,6 +43,8 @@
 
                 $( document ).ready(function() {
                     var image = new Image();
+
+                    var num = {{ num }};
 
                     var noti = {{ news|safe }};
                     var noti2 = JSON.parse(JSON.stringify(noti));
@@ -68,17 +73,16 @@
                         }
 
 
-                        txt_html += "<tr> <th> <h1>" + noti2[index].titulo + "</h1> </th> <th> <h2>" + noti2[index].data_insercao + "</h2> </th>" + "<th> <h2>" + "<img src=" + image.src +  " class='bw2'>" + "</h2> </th> </tr>"
+                        txt_html += "<tr> <th> <h1>" + noti2[index].titulo + "</h1> </th> <th> <h2>" + noti2[index].data_insercao + "</h2> </th>" + "<th> <h2>" + "<img src='{% static '"+ image.src + "' %}' class='bw2'>" + "</h2> </th> </tr>"
                             + "<tr class='noBorder'> <td colspan='3'> <p>" + noti2[index].descricao + " </p></td></tr>";
+
+                        if (num != 0) {
+                            txt_html += "<tr class='noBorder'> <td colspan='3'> <div class='sharethis-inline-share-buttons'></div> </td></tr>";
+                        }
+
+                        txt_html += "<tr class='noBorder'> <td colspan='3'></td></tr>";
                     }
 
-/*
-                    for (index = 0; index < noti2.length; index++) {
-                        image.src = noti2[index].imagem;
-                        txt_html += "<tr> <th> <h1>" + noti2[index].titulo + "</h1> </th> <th> <h2>" + noti2[index].data_insercao + "</h2> </th>" + "<th> <h2>" + "<img src=" + image.src + " onError = imgError(this) class='bw2'>" + "</h2> </th> </tr>"
-                            + "<tr class='noBorder'> <td colspan='3'> <p>" + noti2[index].descricao + " </p></td></tr>";
-                    }
-                    */
 
                     txt_html += "</table>";
                     $('#text').html(txt_html);
@@ -191,8 +195,8 @@
                 </div>
             </div>
 
-        <script src="{% static "js/jquery-1.9.1.js" %}"></script>
-        <script src="{% static "js/bootstrap.js" %}"></script>
+        <script src="{% static 'js/jquery-1.9.1.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 </html>

@@ -157,7 +157,12 @@ def show_contactos(request):
 
 def noticias(request, num=0):
     news = show_news(request, num);
-    return render(request, 'conteudos/noticias.html', {'user': request.user, 'news': news})
+    return render(request, 'conteudos/noticias.html', {'user': request.user, 'news': news, 'num':num})
+
+
+def eventos(request, num=0):
+    events = show_events(request, num);
+    return render(request, 'conteudos/atividades.html', {'user': request.user, 'events': events, 'num':num})
 
 
 def questionario(request):
@@ -251,15 +256,19 @@ def send_message(request):
 
 #functions
 
-def show_events(request):
-    events_list = list(Evento.objects.all().values())
+
+def show_events(request, num=0):
+    if num == 0:
+        events_list = list(Evento.objects.all().values())
+    else:
+        events_list = list(Evento.objects.filter(id=num).values())
 
     json_data = json.dumps(events_list, default=myconverter)
 
     return json_data
 
 
-def show_news(request, num=''):
+def show_news(request, num=0):
     if num == 0:
         items_list = list(Noticia.objects.all().values().order_by('-id'))
     else:
