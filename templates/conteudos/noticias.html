@@ -65,16 +65,19 @@
                         tmp = noti2[index];
 
 
-                        if (tmp.imagem != null) {
-                            image.src = tmp.imagem;
+                        if (tmp.imagem != '') {
+                            image.src = {{MEDIA_URL}}+tmp.imagem;
                         }
                         else {
                             imgError(image);
                         }
 
 
-                        txt_html += "<tr> <th> <h1>" + noti2[index].titulo + "</h1> </th> <th> <h2>" + noti2[index].data_insercao + "</h2> </th>" + "<th> <h2>" + "<img src='{% static '"+ image.src + "' %}' class='bw2'>" + "</h2> </th> </tr>"
-                            + "<tr class='noBorder'> <td colspan='3'> <p>" + noti2[index].descricao + " </p></td></tr>";
+                        txt_html += "<tr class='noBorder'> <td colspan='3'> <h1>" + noti2[index].titulo + "</h1></td></tr>"
+                            + "<tr class='noBorder'> <td colspan='3'> <img src=" + image.src + " class='bw3'>" + "</td></tr>"
+                            + "<tr class='noBorder'> <td colspan='3'> <p>" + noti2[index].descricao + " </p></td></tr>"
+                            + "<tr class='noBorder'> <td colspan='3'>" + noti2[index].data_insercao + "</td></tr>"
+                            + "<tr class='noBorder'> <td colspan='3'></td></tr>";
 
                         if (num != 0) {
                             txt_html += "<tr class='noBorder'> <td colspan='3'> <div class='sharethis-inline-share-buttons'></div> </td></tr>";

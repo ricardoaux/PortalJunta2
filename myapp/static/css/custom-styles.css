@@ -380,3 +380,14 @@ left: auto;
 }
 
 
+.bw3 {
+    width: 500px;
+    height: 300px;
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+
