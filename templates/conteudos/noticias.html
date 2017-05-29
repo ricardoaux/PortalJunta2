@@ -34,6 +34,13 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
             <script type="text/javascript">
+                function truncateText(truncated, maxLength) {
+
+                    if (truncated.length > maxLength) {
+                        truncated = truncated.substr(0,maxLength) + '...';
+                    }
+                    return truncated;
+                }
 
 
                 function imgError(image) {
@@ -72,18 +79,24 @@
                             imgError(image);
                         }
 
-
-                        txt_html += "<tr class='noBorder'> <td colspan='3'> <h1>" + noti2[index].titulo + "</h1></td></tr>"
+                        if (num != 0) {
+                            txt_html += "<tr class='noBorder'> <td colspan='3'> <h1>"  + noti2[index].titulo + "</h1></td></tr>"
                             + "<tr class='noBorder'> <td colspan='3'> <img src=" + image.src + " class='bw3'>" + "</td></tr>"
                             + "<tr class='noBorder'> <td colspan='3'> <p>" + noti2[index].descricao + " </p></td></tr>"
                             + "<tr class='noBorder'> <td colspan='3'>" + noti2[index].data_insercao + "</td></tr>"
-                            + "<tr class='noBorder'> <td colspan='3'></td></tr>";
-
-                        if (num != 0) {
-                            txt_html += "<tr class='noBorder'> <td colspan='3'> <div class='sharethis-inline-share-buttons'></div> </td></tr>";
+                            + "<tr class='noBorder'> <td colspan='3'></td></tr>"
+                            + "<tr class='noBorder'> <td colspan='3'> <div class='sharethis-inline-share-buttons'></div> </td></tr>";
+                        }
+                        else {
+                            txt_html += "<tr class = 'noBorder'> <th class='metade'> <h1> <a href='/noticias/" + noti2[index].id + "'>" + noti2[index].titulo + "</a> </h1> </th>"
+                            + "<th> <img src=" + image.src +  " class='bw2r'>" + "</th> </tr>"
+                            + "<tr class='noBorder'> <td colspan='3'> <p>" + truncateText(noti2[index].descricao, 200) + " </p></td></tr>"
+                            + "<tr class='noBorderR'> <td colspan='3'> <p>" + noti2[index].data_insercao + "</p></td></tr>";
                         }
 
-                        txt_html += "<tr class='noBorder'> <td colspan='3'></td></tr>";
+                        if (noti2.length-1 != index){
+                            txt_html += "<tr class='blanckspace'> <td colspan='3'></td></tr>";
+                        }
                     }
 
 

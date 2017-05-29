@@ -379,6 +379,20 @@ left: auto;
   -webkit-filter: grayscale(70%);
 }
 
+.bw2r {
+    float: right;
+    width: 90px;
+    height: 90px;
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.bw2r:hover {
+  -webkit-filter: grayscale(70%);
+}
 
 .bw3 {
     width: 500px;
@@ -390,4 +404,10 @@ left: auto;
           transition: all 1s ease;
 }
 
+tr.blankspace > td{
+    padding-top: 60px;
+}
 
+tr.noBorderR > td > p{
+    float:right;
+}

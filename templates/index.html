@@ -26,6 +26,14 @@
     <body>
 
         <script type="text/javascript">
+            function truncateText(truncated, minLenght, maxLength) {
+                    if (truncated.length > maxLength) {
+                        truncated = truncated.substr(minLenght, maxLength) + '...';
+                    }
+                    return truncated;
+               }
+
+
             var text = "";
 
             var a = '{{ news }}';
@@ -42,9 +50,9 @@
             $( document ).ready(function() {
                 if (b[0] != null) {
                     document.getElementById("news1").innerHTML = "<h1>" + b[0].titulo + "</h1>" +
-                            "<h2>" + b[0].descricao + "</h2>" +
-                            "<a href='#' class='btn'> Ler Mais </a>";
-                    document.getElementById("news2").innerHTML = "<p>" + b[0].descricao + "</p>";
+                            "<h2>" + truncateText(b[0].descricao, 0, 150) + "</h2>" +
+                            "<a href='/noticias/" + b[0].id + "' class='btn'>Ler Mais</a>";
+                    document.getElementById("news2").innerHTML = "<p>" + truncateText(b[0].descricao, 151, 650) + "</p>";
                 }
                 else {
                     flag = 1;
@@ -58,8 +66,8 @@
                         "<div class='media-body'>" +
                         "<h1 class='media-heading'>" + b[1].titulo + "</h1>" +
                         "<div class='ruler-bottom'></div>" +
-                        "<p class='spacing-t'>" + b[1].descricao + "</p>" +
-                        "<a href='#' class='btn'>Ler Mais</a>";
+                        "<p class='spacing-t'>" + truncateText(b[1].descricao, 0, 250) + "</p>" +
+                        "<a href='/noticias/" + b[1].id + "' class='btn'>Ler Mais</a>";
                 }
 
                 if (b[2] != null && flag == 0) {
@@ -69,8 +77,8 @@
                         "<div class='media-body'>" +
                         "<h1 class='media-heading'>" + b[2].titulo + "</h1>" +
                         "<div class='ruler-bottom'></div>" +
-                        "<p class='spacing-t'>" + b[2].descricao + "</p>" +
-                        "<a href='#' class='btn'>Ler Mais</a>";
+                        "<p class='spacing-t'>" + truncateText(b[2].descricao, 0, 250) + "</p>" +
+                        "<a href='/noticias/" + b[2].id + "' class='btn'>Ler Mais</a>";
                 }
 
 
@@ -81,8 +89,8 @@
                         "<div class='media-body'>" +
                         "<h1 class='media-heading'>" + b[3].titulo + "</h1>" +
                         "<div class='ruler-bottom'></div>" +
-                        "<p class='spacing-t'>" + b[3].descricao + "</p>" +
-                        "<a href='#' class='btn'>Ler Mais</a>";
+                        "<p class='spacing-t'>" + truncateText(b[3].descricao, 0, 250) + "</p>" +
+                        "<a href='/noticias/" + b[3].id + "' class='btn'>Ler Mais</a>";
                 }
 
                 //EVENTOS
