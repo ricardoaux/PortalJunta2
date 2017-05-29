@@ -4,7 +4,7 @@ import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
-from myapp.models import Ficheiro, Cidadao, Questionario, Pergunta, Opcao, Noticia, Evento
+from myapp.models import Ficheiro, Cidadao, Questionario, Pergunta, Opcao, Noticia, Evento, Ocorrencia
 from datetime import datetime, timezone
 
 
@@ -128,6 +128,13 @@ class OpcaoForm(forms.ModelForm):
     class Meta:
         model = Opcao
         fields = ('texto',)
+
+
+class OcorrenciasForm(forms.ModelForm):
+    class Meta:
+        model = Ocorrencia
+        fields = '__all__'
+        exclude = ['utilizador']
 
 
 # class NoticiaForm(forms.ModelForm):

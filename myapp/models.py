@@ -82,3 +82,32 @@ class Mensagem (Conteudo_Utilizador):
     mensagem = models.CharField(max_length=1000)
     telefone = models.IntegerField()
 
+
+class Ocorrencia (Conteudo_Utilizador):
+    OPCOES = (
+        ("A1", "Acessos para cidadãos de mobilidade reduzida"),
+        ("A2", "Animais abandonados"),
+        ("A3", "Arbustos ou árvores na via pública"),
+        ("A4", "Conservação da ilumincação pública"),
+        ("A5", "Conservação de ruas e pavimentos"),
+        ("A6", "Conservação do parque escolar"),
+        ("A7", "Estacionamento de veículos"),
+        ("A8", "Limpeza de valetas, bermas e caminhos"),
+        ("A9", "Limpeza e conservação de espaços públicos"),
+        ("A10", "Manutenção de ciclovias"),
+        ("A11", "Manutenção e limpeza de contentores e ecopontos"),
+        ("A12", "Manutenção, rega e limpeza de jardins"),
+        ("A13", "Nomes ou numeração de ruas"),
+        ("A14", "Poluição sonora"),
+        ("A15", "Publicidade, outdoors e cartazes"),
+        ("A16", "Recolha de lixo"),
+        ("A17", "Rupturas de águas ou desvio de tampas"),
+        ("A18", "Sinalização de trânsito"),
+        ("A19", "Outras ocorrências"),
+    )
+
+    utilizador = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    categoria = models.CharField(max_length=20, choices=OPCOES)
+    local = models.CharField(max_length=200)
+    informacao = models.CharField(max_length=1000)
+    imagem = models.ImageField(upload_to='ocorr_images/', blank=True, null=True)

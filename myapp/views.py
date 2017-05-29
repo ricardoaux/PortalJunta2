@@ -111,6 +111,39 @@ def activationview(request, uidb64, token):
     return http.HttpResponseRedirect("/error")
 
 
+
+@login_required(login_url='auth_error')
+def ocorrencias(request):
+    if request.method == 'POST':
+        user = request.user
+        form = OcorrenciasForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+
+                Ocorrencia.objects.create(
+                    utilizador = user,
+                    local = form.cleaned_data['local'],
+                    categoria = form.cleaned_data['categoria'],
+                    informacao = form.cleaned_data['informacao'],
+                    imagem = form.cleaned_data['imagem']
+                    
+                )
+
+                messages.success(request, 'Ocorrência relatada com sucesso')
+                return HttpResponseRedirect('./..')
+            except Exception as e:
+                messages.error(request, 'Erro ao comunicar ocorrência')
+                return HttpResponseRedirect('./..')
+    else:
+        form = OcorrenciasForm()
+    return render(request, 'outros/ocorrencias.html', {'form': form})
+
+
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
 def show_acao(request):
   return render(request, 'outros/verpdf.html', {'user': request.user, 'titulo': "Planos de Ação", 'obj': Ficheiro.objects.filter(tipo="ACAO")})
 
@@ -187,7 +220,6 @@ def votar(request, pergunta_id=0):
             messages.success(request, 'Voto submetido')
             return HttpResponseRedirect('./..')
         except Exception as e:
-            print (e)
             messages.error(request, 'Erro ao votar')
             return HttpResponseRedirect('./..')
 
@@ -410,7 +442,6 @@ def add_opcao(request, pergunta_id):
                 # has put in the form
                 add_pergunta = form.save(commit=False)
                 add_pergunta.pergunta = pergunta
-                #add_pergunta.vote = 0
                 add_pergunta.save()
                 form.save()
             return redirect('/admin2/pergunta/' + str(pergunta.id) + '/add')

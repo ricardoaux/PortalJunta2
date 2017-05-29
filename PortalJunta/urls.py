@@ -61,6 +61,7 @@ urlpatterns = [
     url(r'^questionario/$', views.questionario),
     url(r'^questionario/(?P<num>[0-9].*)/$', views.questionario2),
     url(r'^votacao/votos/(?P<num>[0-9].*)/$', views.show_votos),
+    url(r'^ocorrencia/$', views.ocorrencias),
 
     url(r'^autenticacao/error/$', views.auth_error, name='auth_error'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

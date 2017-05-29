@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Cidadao, Noticia, Evento, Ficheiro, Questionario, Pergunta, Opcao, Mensagem
+from .models import Cidadao, Noticia, Evento, Ficheiro, Questionario, Pergunta, Opcao, Mensagem, Ocorrencia
 
 
 class CidadaoInline(admin.StackedInline):
@@ -64,6 +64,24 @@ class MensagemAdmin(admin.ModelAdmin):
     list_display = ('remetente', 'assunto', 'data_insercao')
 
 
+class OcorrenciaAdmin(admin.ModelAdmin):
+    readonly_fields = []
+
+    def get_readonly_fields(self, request, obj=None):
+        return list(self.readonly_fields) + \
+               [field.name for field in obj._meta.fields] + \
+               [field.name for field in obj._meta.many_to_many]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return True
+
+    list_display = ('utilizador', 'categoria', 'local', 'data_insercao')
+
+
+
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Noticia, NoticiaAdmin)
@@ -72,6 +90,7 @@ admin.site.register(Evento, EventoAdmin)
 admin.site.register(Questionario, QuestionarioAdmin)
 admin.site.register(Pergunta, PerguntaAdmin)
 admin.site.register(Mensagem, MensagemAdmin)
+admin.site.register(Ocorrencia, OcorrenciaAdmin)
 
 
 
