@@ -22,6 +22,7 @@
     </head>
 <body>
     {% if user.username == 'admin' %}
+
         <div class="container">
             <div class="site-header">
                 <div class="site-header">
@@ -58,41 +59,9 @@
         </div>
 
         <div class="container">
-            <div class="featured-content">
+            <div class="tabs2">
                  <table class="table">
-                            {% if mens.values.first != None %}
-                                <tr>
-                                    <th> Remetente </th>
-                                    <th> Assunto </th>
-                                </tr>
-
-                                {% for c in mens %}
-
-                                    <tr>
-                                        <td>{{ c.remetente }}</td>
-                                        <td>{{ c.assunto }}</td>
-                                        <td> <a href='/manager/mensagem/{{ c.id }}'> Ver </a> </td>
-                                    </tr>
-                                {% endfor %}
-                            {% else %}
-                                <div class = "textclass">
-                                    <h2> Sem Mensagens </h2>
-                                </div>
-                            {% endif %}
-
-                 </table>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="tabs">
-                Ocorrências
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="featured-content">
-                 <table class="table">
+                            <h1 class="titulo">Aprovar Utilizadores</h1>
                             {% if aprovar.values.first != None %}
                                 <tr>
                                     <th> Id </th>
@@ -109,6 +78,61 @@
                             {% else %}
                                 <div class = "textclass">
                                     <h2> Sem Utilizadores para Aprovar </h2>
+                                </div>
+                            {% endif %}
+
+                 </table>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tabs">
+                <table class="table">
+                            <h1 class="titulo">Ocorrências</h1>
+                            {% if ocorr.values.first != None %}
+                                <tr>
+                                    <th><p> Categoria </p></th>
+                                    <th><p> Local </p></th>
+                                </tr>
+
+                                {% for d in ocorr %}
+                                    <tr>
+                                        <td><p> {{ d.categoria }} </p></td>
+                                        <td><p> {{ d.local }} </p></td>
+                                        <td><p><a href='/manager/ocorrencia/{{ d.id }}'> Ver </a></p></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <div class = "textclass">
+                                    <h2> Sem Ocorrências Relatadas </h2>
+                                </div>
+                            {% endif %}
+
+                 </table>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tabs2">
+                 <table class="table">
+                            <h1 class="titulo">Mensagens</h1>
+                            {% if mens.values.first != None %}
+                                <tr>
+                                    <th><p> Remetente </p></th>
+                                    <th><p> Assunto </p></th>
+                                </tr>
+
+                                {% for c in mens %}
+
+                                    <tr>
+                                        <td><p> {{ c.remetente }} </p></td>
+                                        <td><p> {{ c.assunto }} </p></td>
+                                        <td><p><a href='/manager/mensagem/{{ c.id }}'> Ver </a></p></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <div class = "textclass">
+                                    <h2> Sem Mensagens </h2>
                                 </div>
                             {% endif %}
 

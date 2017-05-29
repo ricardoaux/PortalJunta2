@@ -104,6 +104,12 @@ p.last {
     padding-bottom: 20px;
 }
 
+h1.titulo {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
 /* ==========================================================================
     Menu styles stars here
    ========================================================================== */
@@ -321,6 +327,21 @@ left: auto;
     }
 
     .txt {padding-bottom: 3px; text-align: justify;}
+
+    .tabs2{background: white; padding: 40px 30px;}
+    .tabs2 h1 {color: #c85b5f; font-size: 30px; letter-spacing: 1px; line-height:30px; font-family: 'source_sans_problack'; text-transform: uppercase; text-align: center}
+
+
+    .tabs2 table td{
+        width: 33%;
+        text-align: left;
+    }
+
+
+     .tabs table td{
+        width: 33%;
+        text-align: left;
+     }
 
 /* ==========================================================================
     Sidebar styles stars here

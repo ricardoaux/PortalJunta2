@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout, login
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario, Pergunta, Opcao, Votacao
+from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario, Pergunta, Opcao, Votacao, Ocorrencia
 from django.db import models
 from datetime import datetime
 from django.shortcuts import redirect
@@ -126,7 +126,6 @@ def ocorrencias(request):
                     categoria = form.cleaned_data['categoria'],
                     informacao = form.cleaned_data['informacao'],
                     imagem = form.cleaned_data['imagem']
-                    
                 )
 
                 messages.success(request, 'Ocorrência relatada com sucesso')
@@ -331,7 +330,8 @@ def admin(request):
     if request.user.username == 'admin':
         aprovar = show_aprovar(request)
         mens = show_mensagens(request)
-        return render(request, 'admin/admin.html', {'aprovar': aprovar, 'mens' : mens})
+        ocorr = show_ocorrencias(request)
+        return render(request, 'admin/admin.html', {'aprovar': aprovar, 'mens' : mens, 'ocorr': ocorr})
     else:
         messages.error(request, 'Não dispõe de permissões')
         return HttpResponseRedirect('/')
@@ -340,6 +340,11 @@ def admin(request):
 @login_required(login_url='auth_error')
 def mensagem_redirect(request, num=0):
     return HttpResponseRedirect('/admin/myapp/mensagem/'+num)
+
+
+@login_required(login_url='auth_error')
+def ocorrencia_redirect(request, num=0):
+    return HttpResponseRedirect('/admin/myapp/ocorrencia/'+num)
 
 
 @login_required(login_url='auth_error')
@@ -353,6 +358,11 @@ def show_mensagens(request):
     mensagens_list = Mensagem.objects.all().values().order_by('-data_insercao')
     return mensagens_list
 
+
+@login_required(login_url='auth_error')
+def show_ocorrencias(request):
+    ocorrencias_list = Ocorrencia.objects.all().values().order_by('-data_insercao')
+    return ocorrencias_list
 
 # def add_questionario(request):
 #     if request.user.username == 'admin':
