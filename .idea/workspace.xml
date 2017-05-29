@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12e34197-89c0-487b-baf8-4b0fd9412e99" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PortalJunta/urls.py" afterPath="$PROJECT_DIR$/PortalJunta/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/access.log" afterPath="$PROJECT_DIR$/logs/access.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/error.log" afterPath="$PROJECT_DIR$/logs/error.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myapp/admin.py" afterPath="$PROJECT_DIR$/myapp/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myapp/models.py" afterPath="$PROJECT_DIR$/myapp/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myapp/static/css/custom-styles.css" afterPath="$PROJECT_DIR$/myapp/static/css/custom-styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pip-selfcheck.json" afterPath="$PROJECT_DIR$/pip-selfcheck.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/conteudos/noticias.html" afterPath="$PROJECT_DIR$/templates/conteudos/noticias.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myapp/static/js/bootstrap.js" afterPath="$PROJECT_DIR$/myapp/static/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myapp/views.py" afterPath="$PROJECT_DIR$/myapp/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/admin.html" afterPath="$PROJECT_DIR$/templates/admin/admin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/conteudos/atividades.html" afterPath="$PROJECT_DIR$/templates/conteudos/atividades.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/outros/questionario.html" afterPath="$PROJECT_DIR$/templates/outros/questionario.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,8 +46,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PortalJunta/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="48" column="55" lean-forward="false" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+            <state relative-caret-position="383">
+              <caret line="44" column="62" lean-forward="false" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -52,8 +56,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="34" column="80" lean-forward="false" selection-start-line="34" selection-start-column="80" selection-end-line="34" selection-end-column="80" />
+            <state relative-caret-position="684">
+              <caret line="79" column="44" lean-forward="false" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -64,8 +68,8 @@
       <file leaf-file-name="custom-styles.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myapp/static/css/custom-styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="384" column="17" lean-forward="true" selection-start-line="384" selection-start-column="17" selection-end-line="384" selection-end-column="17" />
+            <state relative-caret-position="729">
+              <caret line="104" column="1" lean-forward="false" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -74,21 +78,11 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3735">
-              <caret line="270" column="28" lean-forward="false" selection-start-line="270" selection-start-column="28" selection-end-line="270" selection-end-column="28" />
+            <state relative-caret-position="2624">
+              <caret line="307" column="39" lean-forward="false" selection-start-line="307" selection-start-column="39" selection-end-line="307" selection-end-column="39" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="atividades.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/conteudos/atividades.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="75" column="119" lean-forward="false" selection-start-line="75" selection-start-column="24" selection-end-line="76" selection-end-column="118" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -103,22 +97,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="noticias.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/conteudos/noticias.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="36" column="16" lean-forward="true" selection-start-line="36" selection-start-column="16" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="144">
+              <caret line="441" column="47" lean-forward="true" selection-start-line="441" selection-start-column="47" selection-end-line="441" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <file leaf-file-name="admin.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/admin/admin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="91" column="84" lean-forward="false" selection-start-line="91" selection-start-column="84" selection-end-line="91" selection-end-column="84" />
+            <state relative-caret-position="270">
+              <caret line="72" column="64" lean-forward="false" selection-start-line="72" selection-start-column="64" selection-end-line="72" selection-end-column="64" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myapp/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="61" column="19" lean-forward="false" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,19 +142,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>menuth</find>
-      <find>noBor</find>
-      <find>textc</find>
-      <find>noB</find>
-      <find>container</find>
-      <find>background</find>
       <find>body-bg</find>
       <find>upper</find>
       <find>aprovar</find>
       <find>indis</find>
       <find>admin</find>
       <find>metade</find>
-      <find>btn</find>
       <find>featured-cont</find>
       <find>margem</find>
       <find>print</find>
@@ -166,6 +165,13 @@
       <find>MEDIA_URL</find>
       <find>bw2</find>
       <find>noborder</find>
+      <find>noti2</find>
+      <find>btn</find>
+      <find>send_me</find>
+      <find>last</find>
+      <find>ler mais</find>
+      <find>aprov</find>
+      <find>questionario</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,11 +197,9 @@
         <option value="$PROJECT_DIR$/templates/registration/register.html" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/myapp/static/css/login.css" />
-        <option value="$PROJECT_DIR$/myapp/static/js/bootstrap.js" />
         <option value="$PROJECT_DIR$/templates/admin/add_questionario.html" />
         <option value="$PROJECT_DIR$/templates/admin/add_opcao.html" />
         <option value="$PROJECT_DIR$/templates/admin/add_pergunta.html" />
-        <option value="$PROJECT_DIR$/templates/outros/questionario.html" />
         <option value="$PROJECT_DIR$/templates/admin/perguntas.html" />
         <option value="$PROJECT_DIR$/myapp/static/css/error.css" />
         <option value="$PROJECT_DIR$/templates/erros/erro_autenticao.html" />
@@ -207,20 +211,22 @@
         <option value="$PROJECT_DIR$/myapp/DateTimeWidget.py" />
         <option value="$PROJECT_DIR$/myapp/widgets.py" />
         <option value="$PROJECT_DIR$/myapp/forms.py" />
-        <option value="$PROJECT_DIR$/myapp/admin.py" />
         <option value="$PROJECT_DIR$/templates/outros/votacoes.html" />
         <option value="$PROJECT_DIR$/templates/outros/votos.html" />
-        <option value="$PROJECT_DIR$/templates/admin/admin.html" />
         <option value="$PROJECT_DIR$/templates/error/404.html" />
-        <option value="$PROJECT_DIR$/PortalJunta/urls.py" />
-        <option value="$PROJECT_DIR$/templates/conteudos/atividades.html" />
         <option value="$PROJECT_DIR$/PortalJunta/settings.py" />
-        <option value="$PROJECT_DIR$/myapp/views.py" />
-        <option value="$PROJECT_DIR$/myapp/models.py" />
         <option value="$PROJECT_DIR$/myapp/static/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/myapp/static/css/custom-styles.css" />
         <option value="$PROJECT_DIR$/templates/conteudos/noticias.html" />
+        <option value="$PROJECT_DIR$/templates/conteudos/atividades.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/myapp/static/css/custom-styles.css" />
+        <option value="$PROJECT_DIR$/myapp/models.py" />
+        <option value="$PROJECT_DIR$/myapp/static/js/bootstrap.js" />
+        <option value="$PROJECT_DIR$/myapp/admin.py" />
+        <option value="$PROJECT_DIR$/templates/outros/questionario.html" />
+        <option value="$PROJECT_DIR$/PortalJunta/urls.py" />
+        <option value="$PROJECT_DIR$/myapp/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/admin.html" />
       </list>
     </option>
   </component>
@@ -291,6 +297,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="outros" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PortalJunta" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PortalJunta" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="conteudos" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -305,7 +329,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="myapp" />
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -320,32 +348,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="myapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PortalJunta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PortalJunta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -681,8 +683,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/myapp/static/text/heraldica.txt" />
-    <entry file="file://$PROJECT_DIR$/myapp/static/text/historia.txt" />
     <entry file="file://$PROJECT_DIR$/myapp/static/text/orgaos_junta" />
     <entry file="file://$PROJECT_DIR$/myapp/static/text/orgaos_assembleia" />
     <entry file="file://$PROJECT_DIR$/myapp/static/text/heraldica">
@@ -784,13 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myapp/static/js/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/outros/contactos.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2356">
@@ -808,13 +801,6 @@
     <entry file="file://$PROJECT_DIR$/templates/admin/add_opcao.html" />
     <entry file="file://$PROJECT_DIR$/templates/admin/add_questionario.html" />
     <entry file="file://$PROJECT_DIR$/templates/admin/add_pergunta.html" />
-    <entry file="file://$PROJECT_DIR$/templates/outros/questionario.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="142" column="32" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="146" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/perguntas.html" />
     <entry file="file://$PROJECT_DIR$/myapp/static/css/error.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -861,20 +847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myapp/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="52" column="68" lean-forward="false" selection-start-line="52" selection-start-column="68" selection-end-line="52" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/outros/votacoes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="489">
@@ -897,28 +869,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PortalJunta/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="48" column="55" lean-forward="false" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3735">
-          <caret line="270" column="28" lean-forward="false" selection-start-line="270" selection-start-column="28" selection-end-line="270" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/freguesia/heraldica.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="49" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/conteudos/noticias.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="86" column="80" lean-forward="true" selection-start-line="86" selection-start-column="80" selection-end-line="86" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/conteudos/atividades.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="84" column="91" lean-forward="false" selection-start-line="84" selection-start-column="91" selection-end-line="84" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="1775" column="42" lean-forward="false" selection-start-line="1775" selection-start-column="38" selection-end-line="1775" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/static/js/modernizr-2.6.2-respond-1.1.0.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/static/js/jquery-1.9.1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/static/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -931,52 +933,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/static/css/custom-styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="104" column="1" lean-forward="false" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/myapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="34" column="80" lean-forward="false" selection-start-line="34" selection-start-column="80" selection-end-line="34" selection-end-column="80" />
+        <state relative-caret-position="684">
+          <caret line="79" column="44" lean-forward="false" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/conteudos/atividades.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="75" column="119" lean-forward="false" selection-start-line="75" selection-start-column="24" selection-end-line="76" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myapp/static/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="2032" column="12" lean-forward="false" selection-start-line="2032" selection-start-column="12" selection-end-line="2032" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myapp/static/css/custom-styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="384" column="17" lean-forward="true" selection-start-line="384" selection-start-column="17" selection-end-line="384" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/conteudos/noticias.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="36" column="16" lean-forward="true" selection-start-line="36" selection-start-column="16" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="91" column="84" lean-forward="false" selection-start-line="91" selection-start-column="84" selection-end-line="91" selection-end-column="84" />
+        <state relative-caret-position="144">
+          <caret line="441" column="47" lean-forward="true" selection-start-line="441" selection-start-column="47" selection-end-line="441" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/outros/questionario.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="123" column="93" lean-forward="true" selection-start-line="123" selection-start-column="49" selection-end-line="123" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PortalJunta/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="44" column="62" lean-forward="false" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="61" column="19" lean-forward="false" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2624">
+          <caret line="307" column="39" lean-forward="false" selection-start-line="307" selection-start-column="39" selection-end-line="307" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="72" column="64" lean-forward="false" selection-start-line="72" selection-start-column="64" selection-end-line="72" selection-end-column="64" />
           <folding />
         </state>
       </provider>

@@ -59,7 +59,28 @@
 
         <div class="container">
             <div class="featured-content">
-                Mensagens
+                 <table class="table">
+                            {% if mens.values.first != None %}
+                                <tr>
+                                    <th> Remetente </th>
+                                    <th> Assunto </th>
+                                </tr>
+
+                                {% for c in mens %}
+
+                                    <tr>
+                                        <td>{{ c.remetente }}</td>
+                                        <td>{{ c.assunto }}</td>
+                                        <td> <a href='/manager/mensagem/{{ c.id }}'> Ver </a> </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <div class = "textclass">
+                                    <h2> Sem Mensagens </h2>
+                                </div>
+                            {% endif %}
+
+                 </table>
             </div>
         </div>
 

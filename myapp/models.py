@@ -76,9 +76,9 @@ class Conteudo_Utilizador(models.Model):
 
 
 class Mensagem (Conteudo_Utilizador):
-    remetente = models.CharField(max_length=50)
-    assunto = models.CharField(max_length=60)
-    email = models.EmailField(max_length=50)
-    mensagem = models.CharField(max_length=500)
+    remetente = models.CharField(max_length=100)
+    assunto = models.CharField(max_length=100)
+    email = models.EmailField(max_length=60)
+    mensagem = models.CharField(max_length=1000)
     telefone = models.IntegerField()
 

@@ -40,8 +40,8 @@ def my_404_view(request):
     return render(request, 'error/404.html', status=404)
 
 
-def questionario(request):
-    return render(request, 'outros/questionario.html')
+#def questionario(request):
+#    return render(request, 'outros/questionario.html')
 
 
 def mylogin(request):
@@ -165,10 +165,12 @@ def eventos(request, num=0):
     return render(request, 'conteudos/atividades.html', {'user': request.user, 'events': events, 'num':num})
 
 
+@login_required(login_url='auth_error')
 def questionario(request):
     return render(request, 'outros/questionario.html', {'titulo': "Questionários", 'user': request.user, 'quest': Questionario.objects.filter(ativo=True),
                                                         'opcao': '1'})
 
+@login_required(login_url='auth_error')
 def questionario2(request, num=0):
     return render(request, 'outros/questionario.html', {'user': request.user, 'quest': Questionario.objects.filter(id=num),
                                                         'opcao': '2'})
@@ -254,6 +256,16 @@ def send_message(request):
 
     return HttpResponseRedirect('/')
 
+
+def view_polls(request):
+    return render(request, 'admin/perguntas.html', {'poll_query': Pergunta.objects.all().order_by('data_insercao'),
+                                                    'opt': '1'})
+
+def view_polls2(request, num):
+    pergunta = Pergunta.objects.filter(id=num).order_by('data_insercao')
+    opcoes = Opcao.objects.filter(pergunta=pergunta)
+    return render(request, 'admin/perguntas.html', {'poll_query': pergunta, 'opcoes': opcoes, 'opt': '2', 'num':num})
+
 #functions
 
 
@@ -278,21 +290,36 @@ def show_news(request, num=0):
 
     return json_data
 
+
+
 ############################## ADMIN VIEWS ############################
 
-
+@login_required(login_url='auth_error')
 def admin(request):
     if request.user.username == 'admin':
         aprovar = show_aprovar(request)
-        return render(request, 'admin/admin.html', {'aprovar': aprovar})
+        mens = show_mensagens(request)
+        return render(request, 'admin/admin.html', {'aprovar': aprovar, 'mens' : mens})
     else:
         messages.error(request, 'Não dispõe de permissões')
         return HttpResponseRedirect('/')
 
 
+@login_required(login_url='auth_error')
+def mensagem_redirect(request, num=0):
+    return HttpResponseRedirect('/admin/myapp/mensagem/'+num)
+
+
+@login_required(login_url='auth_error')
 def show_aprovar(request):
     events_list = Cidadao.objects.filter(aprovado=False)
     return events_list
+
+
+@login_required(login_url='auth_error')
+def show_mensagens(request):
+    mensagens_list = Mensagem.objects.all().values().order_by('-data_insercao')
+    return mensagens_list
 
 
 # def add_questionario(request):
@@ -356,6 +383,7 @@ def show_aprovar(request):
 #     })
 
 
+@login_required(login_url='auth_error')
 def add_pergunta(request):
     if request.user.username == 'admin':
         if request.method == 'POST':
@@ -371,6 +399,7 @@ def add_pergunta(request):
         return HttpResponseRedirect('/')
 
 
+@login_required(login_url='auth_error')
 def add_opcao(request, pergunta_id):
     if request.user.username == 'admin':
         pergunta = Pergunta.objects.get(id=pergunta_id)
@@ -393,15 +422,6 @@ def add_opcao(request, pergunta_id):
         return HttpResponseRedirect('/')
 
 
-def view_polls(request):
-    return render(request, 'admin/perguntas.html', {'poll_query': Pergunta.objects.all().order_by('data_insercao'),
-                                                    'opt': '1'})
-
-
-def view_polls2(request, num):
-    pergunta = Pergunta.objects.filter(id=num).order_by('data_insercao')
-    opcoes = Opcao.objects.filter(pergunta=pergunta)
-    return render(request, 'admin/perguntas.html', {'poll_query': pergunta, 'opcoes': opcoes, 'opt': '2', 'num':num})
 
 
 ############ OUTROS ############
