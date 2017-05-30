@@ -136,7 +136,6 @@ class OcorrenciasForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['utilizador']
 
-
 # class NoticiaForm(forms.ModelForm):
 #     class Meta:
 #         model = Noticia
