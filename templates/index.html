@@ -182,7 +182,11 @@
                 <div class="site-header">
                         <div class="loginbtn">
                             {% if user.is_authenticated %}
-                                <p> Bem Vindo {{ user.username }} </p>
+                                {% if user.username == 'admin' %}
+                                    <p> Bem Vindo <a href="/manager"> {{ user.username }} </a></p>
+                                {% else %}
+                                     <p> Bem Vindo {{ user.username }} </p>
+                                {% endif %}
                                 <a href="/logout" class="btnout">logout</a>
                                 {% else %}
                                 <a href="/register/" class="btnreg">register</a>
@@ -382,7 +386,7 @@
                                     <input type="text" class="span3" id="subject" name="subject" placeholder="Assunto" required>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="span3" type="textarea" id="message" name="message" placeholder="Mensagem" maxlength="500" rows="10" required></textarea>
+                                    <textarea class="span3" type="textarea" id="message" name="message" placeholder="Mensagem" maxlength="1000" rows="15" required></textarea>
                                     <span class="help-block"><p id="characterLeft" class="help-block ">Atingiu o limite de caracteres</p></span>
                                 </div>
                                 {% csrf_token %}

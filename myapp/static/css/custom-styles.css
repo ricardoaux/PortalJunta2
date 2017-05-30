@@ -247,6 +247,7 @@ left: auto;
 /* ==========================================================================
     General styles stars here
    ========================================================================== */
+
 	.featured-heading{background: #c85b5f; text-align: center; text-transform: uppercase; padding-top: 40px; padding-bottom: 50px;}
 	.featured-heading h1{font-size: 30px; line-height: 30px; color: #fff;letter-spacing: 2px; font-family: 'source_sans_problack';}
 	.featured-heading h2{font-family: 'source_sans_prolight'; font-size: 24px; line-height: 30px; letter-spacing: 1px;
@@ -310,7 +311,7 @@ left: auto;
                                     letter-spacing: 2px; font-size: 17px;}
     .tabs .btn:hover{background: #716a72; color: #fff;}
 
-    .tabs h1 {color: #c85b5f; font-size: 30px; letter-spacing: 1px; line-height:30px; font-family: 'source_sans_problack'; text-transform: uppercase; text-align: center}
+    .tabs h1 {color: #c85b5f; font-size: 30px; letter-spacing: 1px; line-height:30px; font-family: 'source_sans_problack'; text-transform: uppercase; text-align: center;}
 
     .featuredtwo {background: #202020;}
 
@@ -320,27 +321,39 @@ left: auto;
         background-color: #d6f8de;
     }
     .yellow {
-        background-color: #fef9e7
+        background-color: #fef9e7;
     }
     .grey {
-        background-color: #fafafa
+        background-color: #fafafa;
     }
 
     .txt {padding-bottom: 3px; text-align: justify;}
 
     .tabs2{background: white; padding: 40px 30px;}
-    .tabs2 h1 {color: #c85b5f; font-size: 30px; letter-spacing: 1px; line-height:30px; font-family: 'source_sans_problack'; text-transform: uppercase; text-align: center}
+    .tabs2 h1 {color: #c85b5f; font-size: 30px; letter-spacing: 1px; line-height:30px; font-family: 'source_sans_problack'; text-transform: uppercase; text-align: center;}
 
-    .tabs2 .form-area input, select, textarea
+    .tabs2 .form-area input, select
     {
-        color: black;
+        color: #000000 !important;
         background: white;
+        width: 50% !important;
     }
+
+    .tabs2 .form-area form textarea{
+        color: #000000;
+        background: white;
+        width: 50%;
+    }
+
+    .tabs2 .form-area form input[type="submit"]{color: white !important; padding: 12px 10px; border-radius: 5px; background: green; text-transform: uppercase; border:none; text-shadow: none; font-family: 'source_sans_problack';
+                                    letter-spacing: 2px; font-size: 17px;}
+    .tabs2 .form-area form input[type="submit"]:hover{background: #716a72; color: white !important;}
 
     .tabs2 .form-area label
     {
         font-size: 16px;
         color: black;
+        text-transform: uppercase;
 	}
 
 

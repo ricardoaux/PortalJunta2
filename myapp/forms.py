@@ -131,6 +131,9 @@ class OpcaoForm(forms.ModelForm):
 
 
 class OcorrenciasForm(forms.ModelForm):
+    local = forms.CharField(label='Morada Completa', max_length=100, required=True)
+    informacao = forms.CharField(label='Descrição', max_length=1000, required=True, widget=forms.Textarea)
+
     class Meta:
         model = Ocorrencia
         fields = '__all__'

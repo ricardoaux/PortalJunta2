@@ -18,6 +18,19 @@
 	margin: 10px 0px 60px;
 	}
 
+.tabs2 form input, select, textarea
+{
+	background-color: white;
+	color: black;
+	}
+
+
+.tabs2 .form-area label
+{
+	font-size: 16px;
+	color: black;
+	}
+
 .clearfix {
   *zoom: 1;
 }
