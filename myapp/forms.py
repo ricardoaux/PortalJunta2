@@ -3,10 +3,9 @@ from django import forms
 import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms import extras
 from django.conf import settings
-from myapp.models import Ficheiro, Cidadao, Questionario, Pergunta, Opcao, Noticia, Evento, Ocorrencia
-from datetime import datetime, timezone
-
+from myapp.models import Ficheiro, Cidadao, Questionario, Pergunta, Opcao, Noticia, Evento, Ocorrencia, Requerimento, Servico
 
 class LoginForm(forms.Form):
     user = None
@@ -41,20 +40,23 @@ class LoginForm(forms.Form):
 
 
 class UserCreationForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=30, required=True)
+    username = forms.CharField(label='Nome de Utilizador', max_length=30, required=True)
     password1 = forms.CharField(label='Password',
                           widget=forms.PasswordInput())
-    password2 = forms.CharField(label='Password (Again)',
+    password2 = forms.CharField(label='Password (Novamente)',
                         widget=forms.PasswordInput())
     email = forms.EmailField(label='Email', required=True)
     nome = forms.CharField(label='Nome', max_length=30, required=True)
     apelido = forms.CharField(label='Apelido', max_length=30, required=True)
     num_bi = forms.IntegerField(label='Número do CC', required=True)
-    morada = forms.CharField(label='Morada', max_length=100, required=True)
+    morada = forms.CharField(label='Morada Completa', max_length=100, required=True)
+    data_nascimento = forms.DateField(label='Data de Nascimento', required=True, widget=extras.SelectDateWidget)
     codigopostal = forms.CharField(label='Código Postal', max_length=8, required=True)
     localidade = forms.CharField(label='Localidade', max_length=30, required=True)
     telefone = forms.IntegerField(label='Telefone', required=True)
     nro_eleitor = forms.IntegerField(label='Número de Eleitor', required=True)
+    pai = forms.CharField(label='Nome do Pai', max_length=100, required=True)
+    mae = forms.CharField(label='Nome da Mãe', max_length=100, required=True)
 
     def clean_password2(self):
         if 'password1' in self.cleaned_data:
@@ -137,7 +139,19 @@ class OcorrenciasForm(forms.ModelForm):
     class Meta:
         model = Ocorrencia
         fields = '__all__'
-        exclude = ['utilizador']
+        exclude = ['utilizador', ]
+
+
+class RequerimentoForm(forms.ModelForm):
+    opcoes = (Servico.objects.values_list('id', 'nome'))
+    servico = forms.MultipleChoiceField(widget=forms.Select, choices=opcoes)
+    descricao = forms.CharField(label='Declaro que:', max_length=1000, required=True, widget=forms.Textarea)
+
+    class Meta:
+        model = Requerimento
+        fields = ('__all__')
+        exclude = ['utilizador',  'estado']
+
 
 # class NoticiaForm(forms.ModelForm):
 #     class Meta:

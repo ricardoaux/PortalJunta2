@@ -8,12 +8,15 @@ from django.dispatch import receiver
 
 class Cidadao(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    num_bi = models.PositiveIntegerField(null=True, blank=True)
-    morada = models.CharField(max_length=100, null=True, blank=True)
-    codigo_postal = models.CharField(max_length=8, null=True, blank=True)
-    localidade = models.CharField(max_length=30, null=True, blank=True)
-    telefone = models.PositiveIntegerField(null=True, blank=True)
-    nro_eleitor = models.PositiveIntegerField(null=True, blank=True)
+    num_bi = models.PositiveIntegerField(blank=True, null=True)
+    morada = models.CharField(max_length=100, blank=True, null=True)
+    data_nascimento =  models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    codigo_postal = models.CharField(max_length=8, blank=True, null=True)
+    localidade = models.CharField(max_length=30,blank=True, null=True)
+    telefone = models.PositiveIntegerField(blank=True, null=True)
+    nro_eleitor = models.PositiveIntegerField(blank=True, null=True)
+    pai = models.CharField(max_length=100, blank=True, null=True)
+    mae = models.CharField(max_length=100, blank=True, null=True)
     aprovado = models.BooleanField(default=False)
 
 
@@ -111,3 +114,29 @@ class Ocorrencia (Conteudo_Utilizador):
     local = models.CharField(max_length=200)
     informacao = models.CharField(max_length=1000)
     imagem = models.ImageField(upload_to='ocorr_images/', blank=True, null=True)
+
+
+class Servico (models.Model):
+    nome = models.CharField(max_length=50)
+    preco = models.FloatField()
+    descricao = models.CharField(max_length=1000, blank=True, null=True)
+
+
+class Requerimento(models.Model):
+    ESTADOS = (
+        ("E1", "Em Análise"),
+        ("E2", "Aguarda Pagamento"),
+        ("E3", "Rever Requerimento"),
+        ("E4", "A Processar Documento"),
+        ("E5", "Diferido"),
+        ("E6", "Recusado"),
+    )
+
+    utilizador = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    servico = models.ForeignKey(Servico, on_delete=models.CASCADE, null=False)
+    documento = models.FileField(upload_to='user_documents/', blank=True, null=True)
+    estado = models.CharField(max_length=20, choices=ESTADOS)
+    data_req = models.DateTimeField(auto_now_add=True, blank=True)
+    data_ult_atual = models.DateTimeField(auto_now_add=True, blank=True)
+    descricao = models.CharField(max_length=2000)
+

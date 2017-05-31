@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout, login
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario, Pergunta, Opcao, Votacao, Ocorrencia
+from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario, Pergunta, Opcao, Votacao, Ocorrencia, Servico
 from django.db import models
 from datetime import datetime
 from django.shortcuts import redirect
@@ -110,6 +110,32 @@ def activationview(request, uidb64, token):
             pass
     return http.HttpResponseRedirect("/error")
 
+
+@login_required(login_url='auth_error')
+def requerimentos(request):
+    if request.method == 'POST':
+        user = request.user
+        cidadao = Cidadao.objects.filter(user=user).values()
+        form = RequerimentoForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                Requerimento.objects.create(
+                    utilizador = user,
+                    servico = Servico.objects.filter(nome = form.cleaned_data['nome'].values()),
+                    descricao = form.cleaned_data['descricao'],
+                    documento = form.cleaned_data['documento'],
+                )
+
+                messages.success(request, 'Requerimento Submetido com Sucesso')
+                return HttpResponseRedirect('./..')
+            except Exception as e:
+                messages.error(request, 'Erro ao Submeter Requerimento')
+                return HttpResponseRedirect('./..')
+    else:
+        form = RequerimentoForm()
+    user = request.user
+    cidadao = list(Cidadao.objects.filter(user=user).values())
+    return render(request, 'servicos/requerimento.html', {'cidadao': cidadao, 'form': form})
 
 
 @login_required(login_url='auth_error')
