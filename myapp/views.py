@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout, login
 from myapp.forms import *
 from django.contrib.auth.decorators import login_required
-from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario, Pergunta, Opcao, Votacao, Ocorrencia, Servico
+from myapp.models import Noticia, Evento, Ficheiro, Cidadao, Mensagem, Questionario, Pergunta, Opcao, Votacao, Ocorrencia, Servico, Requerimento
 from django.db import models
 from datetime import datetime
 from django.shortcuts import redirect
@@ -17,7 +17,7 @@ from django import http
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
-from django.db.models import Count
+from django.db.models import Count, Q
 
 import json
 
@@ -128,9 +128,8 @@ def requerimentos(request):
                     pagamento = form.cleaned_data['pagamento'],
                     estado = "Em análise"
                 )
-                if (form.cleaned_data['pagamento'] == "Pagar na Junta"):
-                    messages.success(request, 'Requerimento Efetuado! Verique o Seu Estado Brevemente')
-                    return HttpResponseRedirect('./..')
+                messages.success(request, 'Requerimento Efetuado! Verique o Seu Estado Brevemente')
+                return HttpResponseRedirect('./..')
             except Exception as e:
                 messages.error(request, 'Erro ao Submeter Requerimento')
                 return HttpResponseRedirect('./..')
@@ -360,7 +359,16 @@ def admin(request):
         aprovar = show_aprovar(request)
         mens = show_mensagens(request)
         ocorr = show_ocorrencias(request)
-        return render(request, 'admin/admin.html', {'aprovar': aprovar, 'mens' : mens, 'ocorr': ocorr})
+        reqs = show_requerimentos(request)
+        temp = []
+
+        for req in reqs:
+            user = User.objects.get(id=req['utilizador_id'])
+            servico = Servico.objects.get(id=req['servico_id'])
+            temp.append({'id':req['id'],'username':user.username ,'servico':servico.nome, 'estado':req['estado']})
+
+
+        return render(request, 'admin/admin.html', {'aprovar': aprovar, 'mens' : mens, 'ocorr': ocorr, 'reqs': temp})
     else:
         messages.error(request, 'Não dispõe de permissões')
         return HttpResponseRedirect('/')
@@ -392,6 +400,12 @@ def show_mensagens(request):
 def show_ocorrencias(request):
     ocorrencias_list = Ocorrencia.objects.all().values().order_by('-data_insercao')
     return ocorrencias_list
+
+
+@login_required(login_url='auth_error')
+def show_requerimentos(request):
+    reqs_list = Requerimento.objects.filter((~Q(estado='Diferido')) | (~Q(estado='Recusado'))).values().order_by('data_ult_atual')
+    return reqs_list
 
 # def add_questionario(request):
 #     if request.user.username == 'admin':

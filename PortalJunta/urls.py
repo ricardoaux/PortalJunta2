@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^manager/ficheiro', RedirectView.as_view(url="/admin/myapp/ficheiro")),
     url(r'^manager/questionario', RedirectView.as_view(url="/admin/myapp/questionario")),
     url(r'^manager/pergunta', RedirectView.as_view(url="/admin/myapp/pergunta")),
+    url(r'^manager/servico', RedirectView.as_view(url="/admin/myapp/servico")),
+    url(r'^manager/requerimento', RedirectView.as_view(url="/admin/myapp/requerimento")),
     url(r'^manager/mensagem/(?P<num>[0-9].*)', views.mensagem_redirect),
     url(r'^manager/ocorrencia/(?P<num>[0-9].*)', views.ocorrencia_redirect),
     url(r'^manager/$', views.admin, name="admin"),

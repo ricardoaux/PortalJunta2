@@ -126,7 +126,7 @@ class Ocorrencia (Conteudo_Utilizador):
 
 
 class Servico (models.Model):
-    nome = models.CharField(max_length=50)
+    nome = models.CharField(max_length=50, unique=True)
     preco = models.FloatField()
     descricao = models.CharField(max_length=1000, blank=True, null=True)
 
@@ -138,10 +138,8 @@ class Requerimento(models.Model):
     ESTADOS = (
         ("E1", "Em Análise"),
         ("E2", "Aguarda Pagamento"),
-        ("E3", "Rever Requerimento"),
-        ("E4", "A Processar Documento"),
-        ("E5", "Diferido"),
-        ("E6", "Recusado"),
+        ("E3", "Diferido"),
+        ("E4", "Recusado"),
     )
 
     ENV = (

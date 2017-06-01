@@ -52,6 +52,8 @@
                             <li><a href="/manager/questionario">Questionários</a></li>
                             <li><a href="/manager/ficheiro">Documentos</a></li>
                             <li><a href="/manager/pergunta">Votações</a></li>
+                            <li><a href="/manager/servicos">Serviços</a></li>
+                            <li><a href="/manager/requerimento">Requerimentos</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -77,6 +79,36 @@
                             {% else %}
                                 <div class = "textclass">
                                     <h2> Sem Utilizadores para Aprovar </h2>
+                                </div>
+                            {% endif %}
+
+                 </table>
+            </div>
+        </div>
+
+    <div class="container">
+            <div class="tabs2">
+                 <table class="table">
+                            <h1 class="titulo">Requerimentos</h1>
+
+                            {% if reqs.length != 0 %}
+                                <tr>
+                                    <th> Requerente </th>
+                                    <th> Serviço </th>
+                                    <th> Estado </th>
+                                </tr>
+
+                                {% for f in reqs %}
+                                    <tr>
+                                        <td>{{ f.username }}</td>
+                                        <td>{{ f.servico }}</td>
+                                        <td>{{ f.estado }}</td>
+                                        <td><p><a href='/manager/requerimento/{{ f.id }}'> Ver </a></p></td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <div class = "textclass">
+                                    <h2> Sem Requerimentos </h2>
                                 </div>
                             {% endif %}
 
