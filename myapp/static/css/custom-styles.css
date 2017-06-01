@@ -301,6 +301,9 @@ left: auto;
     .textclass { padding: 20px 0; padding-left: 25px; padding-right: 40px;}
     .textclass p{font-size: 18px; text-align: justify;}
 
+    .tabs2 .textclass { padding: 10px 0; padding-left: 25px; padding-right: 25px;}
+    .tabs2 .textclass p{font-size: 18px; text-align: justify; text-transform: uppercase;}
+
     .tabs .mais {padding-top:25px; padding-right: 25px; text-align: right; padding-bottom: 30px;}
 
     .tabs .mais .btn{color: #fff; padding: 15px 35px 15px 35px; border-radius: 5px; background: #333333; text-transform: uppercase; border:none; text-shadow: none; font-family: 'source_sans_problack';

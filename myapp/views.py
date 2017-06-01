@@ -115,27 +115,30 @@ def activationview(request, uidb64, token):
 def requerimentos(request):
     if request.method == 'POST':
         user = request.user
-        cidadao = Cidadao.objects.filter(user=user).values()
         form = RequerimentoForm(request.POST, request.FILES)
         if form.is_valid():
+
             try:
                 Requerimento.objects.create(
                     utilizador = user,
-                    servico = Servico.objects.filter(nome = form.cleaned_data['nome'].values()),
+                    servico = form.cleaned_data['servico'],
                     descricao = form.cleaned_data['descricao'],
                     documento = form.cleaned_data['documento'],
+                    envio = form.cleaned_data['envio'],
+                    pagamento = form.cleaned_data['pagamento'],
+                    estado = "Em análise"
                 )
-
-                messages.success(request, 'Requerimento Submetido com Sucesso')
-                return HttpResponseRedirect('./..')
+                if (form.cleaned_data['pagamento'] == "Pagar na Junta"):
+                    messages.success(request, 'Requerimento Efetuado! Verique o Seu Estado Brevemente')
+                    return HttpResponseRedirect('./..')
             except Exception as e:
                 messages.error(request, 'Erro ao Submeter Requerimento')
                 return HttpResponseRedirect('./..')
     else:
         form = RequerimentoForm()
     user = request.user
-    cidadao = list(Cidadao.objects.filter(user=user).values())
-    return render(request, 'servicos/requerimento.html', {'cidadao': cidadao, 'form': form})
+    cidadao = Cidadao.objects.filter(user=user)
+    return render(request, 'servicos/requerimento.html', {'user':user, 'cidadao': cidadao, 'form': form})
 
 
 @login_required(login_url='auth_error')

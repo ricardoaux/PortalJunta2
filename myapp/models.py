@@ -19,6 +19,9 @@ class Cidadao(models.Model):
     mae = models.CharField(max_length=100, blank=True, null=True)
     aprovado = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.user
+
 
 class Conteudo_Site(models.Model):
     titulo = models.CharField(max_length=100)
@@ -27,6 +30,9 @@ class Conteudo_Site(models.Model):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.titulo
 
 
 class Noticia(Conteudo_Site):
@@ -63,6 +69,9 @@ class Pergunta(Conteudo_Site):
 class Opcao(models.Model):
     pergunta = models.ForeignKey(Pergunta)
     texto = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.texto
 
 
 class Votacao(models.Model):
@@ -121,6 +130,9 @@ class Servico (models.Model):
     preco = models.FloatField()
     descricao = models.CharField(max_length=1000, blank=True, null=True)
 
+    def __str__(self):
+        return self.nome
+
 
 class Requerimento(models.Model):
     ESTADOS = (
@@ -132,6 +144,16 @@ class Requerimento(models.Model):
         ("E6", "Recusado"),
     )
 
+    ENV = (
+        ("C", "Correio"),
+        ("L", "Levantamento na Junta"),
+    )
+
+    PAG = (
+        ("J", "Pagar na Junta"),
+        ("O", "Pagar Online"),
+    )
+
     utilizador = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     servico = models.ForeignKey(Servico, on_delete=models.CASCADE, null=False)
     documento = models.FileField(upload_to='user_documents/', blank=True, null=True)
@@ -139,4 +161,6 @@ class Requerimento(models.Model):
     data_req = models.DateTimeField(auto_now_add=True, blank=True)
     data_ult_atual = models.DateTimeField(auto_now_add=True, blank=True)
     descricao = models.CharField(max_length=2000)
+    pagamento = models.CharField(max_length=20, choices=PAG,  blank=True, null=True, default="O")
+    envio = models.CharField(max_length=20, choices=ENV,  blank=True, null=True, default="C")
 

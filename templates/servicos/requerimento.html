@@ -123,12 +123,19 @@
 
                 <div class="container">
                     <div class="tabs2">
-                        Eu, {{ cidadao }}
+                        <div class = 'textclass'>
+                            <p>
+                                {% for b in cidadao %}
+                                Eu, <b>{{ user.first_name }} {{user.last_name }}</b>, portador do CC/BI número: <b>{{ b.num_bi }}</b>, eleitor número: <b>{{ b.nro_eleitor }}</b>
+                                , nascido em <b>{{ b.data_nascimento }}</b>, com a morada: <b>{{ b.morada }}</b>, filho de <b>{{b.pai}}</b> e de <b>{{b.mae}}</b>, requiro o seguinte:
+                                {% endfor %}
+                            </p>
+                        </div>
                         <div class="form-area">
                             <form action ="" method = "post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {{ form.as_p }}
-                                <input type="submit" value="Relatar" />
+                                <input type="submit" value="Efetuar Pedido" />
                             </form>
                         </div>
                     </div>

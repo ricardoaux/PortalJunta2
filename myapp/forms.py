@@ -143,14 +143,51 @@ class OcorrenciasForm(forms.ModelForm):
 
 
 class RequerimentoForm(forms.ModelForm):
+    ENV = (
+        ("C", "Correio"),
+        ("L", "Levantamento na Junta"),
+    )
+
+    PAG = (
+        ("J", "Pagar na Junta"),
+        ("O", "Pagar Online"),
+    )
+
     opcoes = (Servico.objects.values_list('id', 'nome'))
-    servico = forms.MultipleChoiceField(widget=forms.Select, choices=opcoes)
+    servico = forms.MultipleChoiceField(widget=forms.SelectMultiple, choices=opcoes)
     descricao = forms.CharField(label='Declaro que:', max_length=1000, required=True, widget=forms.Textarea)
+    documento = forms.FileField(label='Anexar ficheiro relevante (não obrigatório)', required=False)
+
+    envio = forms.MultipleChoiceField(label='Envio (O envio por correio acresce 1€)', widget=forms.SelectMultiple, choices=ENV, initial='C')
+    pagamento = forms.MultipleChoiceField(label='Método de Pagamento', widget=forms.SelectMultiple, choices=PAG, initial='O')
 
     class Meta:
         model = Requerimento
         fields = ('__all__')
         exclude = ['utilizador',  'estado']
+
+    def clean_servico(self):
+        if 'servico' in self.cleaned_data:
+            id = self.cleaned_data['servico']
+
+            try:
+                servico = Servico.objects.get(id = id[0])
+                return servico
+            except ObjectDoesNotExist:
+                raise forms.ValidationError('O serviço não foi encontrado')
+
+
+    def clean_envio(self):
+        if 'envio' in self.cleaned_data:
+            envio = self.cleaned_data['envio']
+            return envio[0]
+
+
+    def clean_pagamento(self):
+        if 'pagamento' in self.cleaned_data:
+            pag = self.cleaned_data['pagamento']
+            return pag[0]
+
 
 
 # class NoticiaForm(forms.ModelForm):
